@@ -97,5 +97,24 @@ public class TestSetting {
 	public String getUserPwd() {
 		return userPwd;
 	}
+	
+	public static String[] getServerDefaultSetting (String serverName) {
+		String[] defaultSetting = new String[4];
+		defaultSetting[0] = bindingType;
+		if (serverName.equals("OpenCmisServer")) {			
+			defaultSetting[1] = OCS_CONST_BINDING + bindingType;
+			defaultSetting[2] = "";
+			defaultSetting[3] = "";
+		} else if (serverName.equals("Alfresco")) {
+			if (bindingType.equals("atom")) {
+				defaultSetting[1] = ALF_CONST_BINDING + "1.0/atom";
+			} else if (bindingType.equals("atom11")) {
+				defaultSetting[1] = ALF_CONST_BINDING + "1.1/atom";
+			}
+			defaultSetting[2] = "admin";
+			defaultSetting[3] = "Lanuv1111";
+		}		
+		return defaultSetting;
+	}
 
 }

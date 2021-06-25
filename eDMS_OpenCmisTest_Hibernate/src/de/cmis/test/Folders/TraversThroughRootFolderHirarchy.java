@@ -46,9 +46,32 @@ public class TraversThroughRootFolderHirarchy {
 
 	}
 
-	public static void main(String args[]) {
-		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+	public static void go() {
+		Tool.printAndLog("Repository-Suche über EntryPoint Atompub (CMIS 1.0) OpenCmisServer");
+		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom";
 		List<Repository> repositories = getRepositories(serverURL);
+
+		for (Repository repository : repositories) {
+			Session session = repository.createSession();
+			Folder rootFolder = session.getRootFolder();
+			printFolder(rootFolder, "");
+
+		}
+		
+		Tool.printAndLog("Repository-Suche über EntryPoint Atompub (CMIS 1.1) OpenCmisServer");
+		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom11";
+		repositories = getRepositories(serverURL);
+
+		for (Repository repository : repositories) {
+			Session session = repository.createSession();
+			Folder rootFolder = session.getRootFolder();
+			printFolder(rootFolder, "");
+
+		}
+		
+		Tool.printAndLog("Repository-Suche über EntryPoint Atompub (CMIS 1.1) Browser");
+		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+		repositories = getRepositories(serverURL);
 
 		for (Repository repository : repositories) {
 			Session session = repository.createSession();

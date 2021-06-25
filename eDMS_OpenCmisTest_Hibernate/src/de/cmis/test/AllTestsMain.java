@@ -2,10 +2,14 @@ package de.cmis.test;
 
 import java.io.IOException;
 
-
-import de.cmis.test.General.GetAllRepositoriesByAllBindings;
+import de.cmis.test.Documents.CheckVersioning;
+import de.cmis.test.Folders.CreateFolder;
+import de.cmis.test.Folders.DeleteFolder;
+import de.cmis.test.Folders.GetFolderHirarchyFromRootFolderOfRepository;
+import de.cmis.test.Folders.TraversThroughRootFolderHirarchy;
 import de.cmis.test.General.GetAclOfRootFolder;
 import de.cmis.test.General.GetAllPropertyTypes;
+import de.cmis.test.General.GetAllRepositoriesByAllBindings;
 import de.cmis.test.General.GetBasicTypesOfCmisSpecification;
 import de.cmis.test.General.GetRootFolderId;
 import de.cmis.test.General.GetSessionFromRepositoryEndpoint;
@@ -54,10 +58,21 @@ public class AllTestsMain {
 		GetAclOfRootFolder.go(setting);
 		GetAllPropertyTypes.go(setting);
 		
-		// Property Tests
+		// Eigenschaften (Properties) Tests
 		GetPropertiesOfRootFolder.go(setting);
 		GetPropertiesOfFolderType.go(setting);
 		GetBasicRepositoryInfo.go(setting);
+		
+		// Order (Folder) Tests
+		TraversThroughRootFolderHirarchy.go(); // Ohne Settings
+		CreateFolder.go(setting);
+		DeleteFolder.go(setting);
+		GetFolderHirarchyFromRootFolderOfRepository.go(setting);
+		
+		// Dokument Tests
+
+		CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
+
 		
 		
 		
@@ -71,6 +86,6 @@ public class AllTestsMain {
 		testSession.closeSession();
 		
 
-	}
+	}	
 
 }

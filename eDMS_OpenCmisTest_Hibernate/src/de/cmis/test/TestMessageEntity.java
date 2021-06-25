@@ -1,10 +1,8 @@
 package de.cmis.test;
 
-import java.time.LocalDateTime;
-
-import java.time.format.DateTimeFormatter;
-
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

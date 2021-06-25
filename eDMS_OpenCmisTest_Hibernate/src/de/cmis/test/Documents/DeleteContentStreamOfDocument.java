@@ -15,6 +15,7 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.client.runtime.repository.ObjectFactoryImpl;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
@@ -63,8 +64,8 @@ public class DeleteContentStreamOfDocument {
 
 	}
 
-	public static void go() throws IOException {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		/* Create the document 'sampleDoc.json' */
 		Map<String, String> properties = new HashMap<>();

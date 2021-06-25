@@ -13,17 +13,18 @@ import org.apache.chemistry.opencmis.client.api.Folder;
 import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class CreateDocumentWithContentInRootFolder {
 
-	public static void go() throws IOException {
+	public static void go(TestSetting setting) throws IOException {
 		File inputFile = new File("./src/com/sample/util/Files/07_S_Verweis.docx");
 
 		String mimeType = Files.probeContentType(inputFile.toPath());
 
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		// Dokument löschen, falls vorhanden
 		try {

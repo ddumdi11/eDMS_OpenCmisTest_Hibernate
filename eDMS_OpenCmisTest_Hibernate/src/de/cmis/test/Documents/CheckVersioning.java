@@ -17,7 +17,7 @@ import org.apache.chemistry.opencmis.commons.data.ContentStream;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class Versioning {
+public class CheckVersioning {
 
 	private static String inputFile1 = "./src/de/cmis/test/Files/07_S_Verweis.docx";
 	private static String inputFile2 = "./src/de/cmis/test/Files/07_S_Verweis.docx";
@@ -71,9 +71,11 @@ public class Versioning {
 
 	}
 
-	public static void go() throws IOException {
+	public static void go(String[] defaultSetting) throws IOException {
 		// Das Versioning ist nur beim Alfresco-Server möglich
-		Session session = SessionSingleton.getInstance().getSession("Alfresco", "atom11");
+		// In der Test-Main müssten die Default-Settings für Alfresco + den gewählten Bindungstyp geholt werden
+		Tool.printAndLog("Versioning kann momentan nur am Alfresco-Server getestet werden.");
+		Session session = SessionSingleton.getInstance().getSession(defaultSetting);
 
 		Document document = createDocument(session);
 

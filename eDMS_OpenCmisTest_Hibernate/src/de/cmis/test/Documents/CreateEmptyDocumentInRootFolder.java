@@ -1,21 +1,20 @@
 package de.cmis.test.Documents;
 
 import java.util.HashMap;
-
 import java.util.Map;
 
 import org.apache.chemistry.opencmis.client.api.Document;
 import org.apache.chemistry.opencmis.client.api.Folder;
 import org.apache.chemistry.opencmis.client.api.Session;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class CreateEmptyDocumentInRootFolder {
 
-	static Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
-
-	public static void go() {
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 		Folder rootFolder = session.getRootFolder();
 
 		// Dokument löschen, falls vorhanden

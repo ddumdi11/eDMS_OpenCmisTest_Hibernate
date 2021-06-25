@@ -48,7 +48,7 @@ public class GetPropertiesOfFirstDocumentInRootFolder {
 
 			List<Property<?>> properties = document.getProperties();
 
-			for (Property property : properties) {
+			for (Property<?> property : properties) {
 				if (property.getId().startsWith("cmis:"))
 					Tool.printAndLog(property.getId() + " " + property.getValueAsString());
 			}
@@ -58,8 +58,31 @@ public class GetPropertiesOfFirstDocumentInRootFolder {
 	}
 
 	public static void go() {
+		Tool.printAndLog("Repository-Abfrage über Atom (CMIS 1.0) EntryPoint");
 		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
 		List<Repository> repositories = getRepositories(serverURL);
+
+		for (Repository repository : repositories) {
+			Session session = repository.createSession();
+			Folder rootFolder = session.getRootFolder();
+			printFirstDocumentProperties(rootFolder);
+
+		}
+		
+		Tool.printAndLog("Repository-Abfrage über Atom (CMIS 1.1) EntryPoint");
+		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+		repositories = getRepositories(serverURL);
+
+		for (Repository repository : repositories) {
+			Session session = repository.createSession();
+			Folder rootFolder = session.getRootFolder();
+			printFirstDocumentProperties(rootFolder);
+
+		}
+		
+		Tool.printAndLog("Repository-Abfrage über Browser (CMIS 1.1) EntryPoint");
+		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+		repositories = getRepositories(serverURL);
 
 		for (Repository repository : repositories) {
 			Session session = repository.createSession();
