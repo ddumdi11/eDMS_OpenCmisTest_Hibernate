@@ -6,15 +6,16 @@ import org.apache.chemistry.opencmis.client.api.Folder;
 import org.apache.chemistry.opencmis.client.api.Property;
 import org.apache.chemistry.opencmis.client.api.Session;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class TestCmisGetAllPropertyTypes {
+public class GetAllPropertyTypes {
 
-	public static void go() {
+	public static void go(TestSetting setting) {
 		// Session session = SessionSingleton.getInstance().getSession("OpenCmisServer",
 		// "atom11");
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "browser");
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		Folder folder = session.getRootFolder();
 

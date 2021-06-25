@@ -1,4 +1,4 @@
-package de.cmis.test.General;
+package de.cmis.test.Properties;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +14,10 @@ import org.apache.chemistry.opencmis.commons.data.RepositoryInfo;
 import org.apache.chemistry.opencmis.commons.definitions.PermissionDefinition;
 import org.apache.chemistry.opencmis.commons.enums.BindingType;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 
-public class TestCmisGetBasicRepositoryInfo {
+public class GetBasicRepositoryInfo {
 
 	public static List<Repository> getRepositories(String serverURL) {
 		Map<String, String> parameters = new HashMap<>();
@@ -63,8 +64,8 @@ public class TestCmisGetBasicRepositoryInfo {
 		Tool.printAndLog("----------------------------------------------------------");
 	}
 
-	public static void go() {
-		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom11";
+	public static void go(TestSetting setting) {
+		String serverURL = setting.getBindingUrl();
 		List<Repository> repositories = getRepositories(serverURL);
 
 		for (Repository repository : repositories) {

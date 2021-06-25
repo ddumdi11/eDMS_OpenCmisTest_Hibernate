@@ -45,10 +45,10 @@ public class TestMessageEntity implements Serializable {
 	@Column(name = "Test_Datum")
 	private String testDatum;
 
-	public void setAll(String testName, String testPackage, String testErgebnis) {
+	public void setAll(String testName, String testPackage, String testOutput) {
 		this.testName = testName;
 		this.testPackage = testPackage;
-		this.testOutput = testErgebnis;
+		this.testOutput = testOutput;
 		setTestDatum();
 	}
 

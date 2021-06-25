@@ -3,17 +3,16 @@ package de.cmis.test;
 import java.io.IOException;
 
 
-import de.cmis.test.Documents.CreateEmptyDocumentInRootFolder;
-import de.cmis.test.Documents.CreateUnfiledDocumentInRootFolder;
-import de.cmis.test.Documents.Versioning;
 import de.cmis.test.General.GetAllRepositoriesByAllBindings;
-import de.cmis.test.General.TestCmisGetAclOfRootFolder;
-import de.cmis.test.General.TestCmisGetAllPropertyTypes;
-import de.cmis.test.General.TestCmisGetBasicRepositoryInfo;
+import de.cmis.test.General.GetAclOfRootFolder;
+import de.cmis.test.General.GetAllPropertyTypes;
 import de.cmis.test.General.GetBasicTypesOfCmisSpecification;
-import de.cmis.test.General.TestCmisGetIdOfRootFolder;
+import de.cmis.test.General.GetRootFolderId;
 import de.cmis.test.General.GetSessionFromRepositoryEndpoint;
 import de.cmis.test.General.GetSessionToRepository;
+import de.cmis.test.Properties.GetBasicRepositoryInfo;
+import de.cmis.test.Properties.GetPropertiesOfFolderType;
+import de.cmis.test.Properties.GetPropertiesOfRootFolder;
 
 /**
  * Ein CMIS-Testprogramm.
@@ -38,7 +37,7 @@ public class AllTestsMain {
 	public static void main(String[] args) throws IOException {
 		
 		// Testeinstellungen festlegen
-		
+		TestSetting setting = new TestSetting().getInstance();
 		
 		// Hibernate Session für Logging erzeugen
 		Tool testSession = new Tool();
@@ -48,23 +47,24 @@ public class AllTestsMain {
 		// Berücksichtigt nicht die Testeinstellung
 		GetAllRepositoriesByAllBindings.go();
 		GetSessionToRepository.go();
-		GetSessionFromRepositoryEndpoint.go();
+		GetSessionFromRepositoryEndpoint.go();		
+		// Ab hier mit Testeinstellung "setting"
+		GetBasicTypesOfCmisSpecification.go(setting);
+		GetRootFolderId.go(setting);
+		GetAclOfRootFolder.go(setting);
+		GetAllPropertyTypes.go(setting);
 		
-		// Ab hier mit Testeinstellungswerten
-		GetBasicTypesOfCmisSpecification.go();
+		// Property Tests
+		GetPropertiesOfRootFolder.go(setting);
+		GetPropertiesOfFolderType.go(setting);
+		GetBasicRepositoryInfo.go(setting);
 		
-		TestCmisGetAclOfRootFolder.go();
-		TestCmisGetAllPropertyTypes.go();
-		TestCmisGetBasicRepositoryInfo.go();
 		
-		TestCmisGetIdOfRootFolder.go();
+		
 		
 				
 		
-		// Dokumente Tests		
-		CreateEmptyDocumentInRootFolder.go();
-		CreateUnfiledDocumentInRootFolder.go();
-		Versioning.go();
+		
 		
 		
 		// Hibernate Session für Logging schließen

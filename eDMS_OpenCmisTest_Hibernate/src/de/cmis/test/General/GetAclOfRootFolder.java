@@ -7,13 +7,14 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.data.Ace;
 import org.apache.chemistry.opencmis.commons.data.Acl;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class TestCmisGetAclOfRootFolder {
+public class GetAclOfRootFolder {
 
-	public static void go() {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		Folder folder = session.getRootFolder();
 

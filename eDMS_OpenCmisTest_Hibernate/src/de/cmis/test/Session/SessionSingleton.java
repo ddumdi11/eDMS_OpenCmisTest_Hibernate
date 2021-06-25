@@ -13,17 +13,12 @@ import org.apache.chemistry.opencmis.commons.SessionParameter;
 import org.apache.chemistry.opencmis.commons.enums.BindingType;
 import org.apache.chemistry.opencmis.commons.exceptions.CmisConnectionException;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 
 public class SessionSingleton {
 
 	private static SessionSingleton instance; // vor Zugriff von außen geschützt und statisch
-	private static final String OCS_CONST_USER = "";
-	private static final String OCS_CONST_PWD = "";
-	private static final String OCS_CONST_BINDING = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/";
-	private static final String ALF_CONST_USER = "admin";
-	private static final String ALF_CONST_PWD = "Lanuv1111";
-	private static final String ALF_CONST_BINDING = "http://localhost:8080/alfresco/api/-default-/cmis/versions/";
 
 	private SessionSingleton() {
 	} // privater Konstruktor mit Zugriffsschutz von außen
@@ -35,41 +30,27 @@ public class SessionSingleton {
 		return instance;
 	}
 
-	public Session getSession(String serverName, String bindingType) {
-
-		String user = "";
-		String pwd = "";
-		String binding = "";
-
-		if (serverName.equals("Alfresco")) {
-			user = ALF_CONST_USER;
-			pwd = ALF_CONST_PWD;
-			if (bindingType.equals("atom")) {
-				binding = ALF_CONST_BINDING + "1.0/atom";
-			} else if (bindingType.equals("atom11")) {
-				binding = ALF_CONST_BINDING + "1.1/atom";
-			}
-			
-		} else if (serverName.equals("OpenCmisServer")) {
-			user = OCS_CONST_USER;
-			pwd = OCS_CONST_PWD;
-			binding = OCS_CONST_BINDING + bindingType;
-		}
+	public Session getSession(TestSetting setting) {
 		
-		Tool.printAndLog("Binding: " + binding);
+		String bindingType = setting.getBindingType();
+		String bindingUrl = setting.getBindingUrl();
+		String userName = setting.getUserName();
+		String userPwd = setting.getUserPwd();
+
+		Tool.printAndLog("Binding: " + bindingUrl);
 
 		Session session = null;
 
 		// No connection to OpenCmisServer available, create a new one
 		SessionFactory sessionFactory = SessionFactoryImpl.newInstance();
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put(SessionParameter.USER, user);
-		parameters.put(SessionParameter.PASSWORD, pwd);
+		parameters.put(SessionParameter.USER, userName);
+		parameters.put(SessionParameter.PASSWORD, userPwd);
 		if (bindingType.contains("atom")) {
-			parameters.put(SessionParameter.ATOMPUB_URL, binding);
+			parameters.put(SessionParameter.ATOMPUB_URL, bindingUrl);
 			parameters.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
 		} else if (bindingType.contains("browser")) {
-			parameters.put(SessionParameter.BROWSER_URL, binding);
+			parameters.put(SessionParameter.BROWSER_URL, bindingUrl);
 			parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
 		}
 		parameters.put(SessionParameter.COMPRESSION, "true");
@@ -102,37 +83,30 @@ public class SessionSingleton {
 		return session;
 	}
 
-	public Session getSession(String serverName, String bindingType, String repository) {
-
-		String user = "";
-		String pwd = "";
-		String binding = "";
-
-		if (serverName.equals("Alfresco")) {
-			user = ALF_CONST_USER;
-			pwd = ALF_CONST_PWD;
-			binding = ALF_CONST_BINDING;
-		} else if (serverName.equals("OpenCmisServer")) {
-			user = OCS_CONST_USER;
-			pwd = OCS_CONST_PWD;
-			binding = OCS_CONST_BINDING;
-		}
-
+	public Session getSession(TestSetting setting, String repositoryId) {
+		
+		String bindingType = setting.getBindingType();
+		String bindingUrl = setting.getBindingUrl();
+		String userName = setting.getUserName();
+		String userPwd = setting.getUserPwd();
+		
+		Tool.printAndLog("Binding: " + bindingUrl);
+		
 		Session session = null;
 
 		// No connection to OpenCmisServer available, create a new one
 		SessionFactory sessionFactory = SessionFactoryImpl.newInstance();
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put(SessionParameter.USER, user);
-		parameters.put(SessionParameter.PASSWORD, pwd);
+		parameters.put(SessionParameter.USER, userName);
+		parameters.put(SessionParameter.PASSWORD, userPwd);
 		if (bindingType.contains("atom")) {
-			parameters.put(SessionParameter.ATOMPUB_URL, binding + bindingType);
+			parameters.put(SessionParameter.ATOMPUB_URL, bindingUrl + bindingType);
 			parameters.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
 		} else if (bindingType.contains("browser")) {
-			parameters.put(SessionParameter.BROWSER_URL, binding + bindingType);
+			parameters.put(SessionParameter.BROWSER_URL, bindingUrl + bindingType);
 			parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
 		}
-		parameters.put(SessionParameter.REPOSITORY_ID, repository);
+		parameters.put(SessionParameter.REPOSITORY_ID, repositoryId);
 
 		session = sessionFactory.createSession(parameters);
 
