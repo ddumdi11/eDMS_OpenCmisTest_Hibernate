@@ -18,7 +18,8 @@ public class TestSetting {
 	private static String userPwd;
 
 	private static final String OCS_CONST_BINDING = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/";
-	private static final String ALF_CONST_BINDING = "http://localhost:8080/alfresco/api/-default-/cmis/versions/";
+	private static final String ALF_CONST_BINDING = "http://localhost:8080/alfresco/api/-default-/public/cmis/versions/";
+
 
 	TestSetting() {
 	} // privater Konstruktor mit Zugriffsschutz von außen

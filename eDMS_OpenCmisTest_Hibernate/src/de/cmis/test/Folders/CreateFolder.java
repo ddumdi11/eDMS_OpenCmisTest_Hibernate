@@ -19,7 +19,7 @@ public class CreateFolder {
 
 		Map<String, String> properties = new HashMap<>();
 		properties.put("cmis:objectTypeId", "cmis:folder");
-		properties.put("cmis:name", "My_Folder-0-0");
+		properties.put("cmis:name", "My_Folder-0-3");
 
 		Folder folder = rootFolder.createFolder(properties);
 

@@ -12,7 +12,7 @@ import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class GetImportantPropertyValuesFromDocument {
+public class GetImportantPropertyValuesFromFirstDocumentInRootFolder {
 
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);

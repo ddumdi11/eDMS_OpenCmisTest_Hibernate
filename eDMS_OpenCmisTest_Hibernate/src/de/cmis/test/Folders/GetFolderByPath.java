@@ -12,7 +12,7 @@ public class GetFolderByPath {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		CmisObject cmisObject = session.getObjectByPath("/My_Folder-0-0");
+		CmisObject cmisObject = session.getObjectByPath("/My_Folder-0-1");
 
 		Tool.printAndLog("Name : " + cmisObject.getName());
 		Tool.printAndLog("Type : " + cmisObject.getType());

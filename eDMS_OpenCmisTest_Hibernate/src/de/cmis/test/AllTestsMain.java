@@ -3,9 +3,14 @@ package de.cmis.test;
 import java.io.IOException;
 
 import de.cmis.test.Documents.CheckVersioning;
+import de.cmis.test.Documents.GetContentsOfFirstDocumentInRootFolder;
+import de.cmis.test.Documents.GetImportantPropertyValuesFromFirstDocumentInRootFolder;
+import de.cmis.test.Documents.GetPropertiesOfFirstDocumentInRootFolder;
 import de.cmis.test.Folders.CreateFolder;
 import de.cmis.test.Folders.DeleteFolder;
+import de.cmis.test.Folders.GetFolderByPath;
 import de.cmis.test.Folders.GetFolderHirarchyFromRootFolderOfRepository;
+import de.cmis.test.Folders.GetParentsOfFolder;
 import de.cmis.test.Folders.TraversThroughRootFolderHirarchy;
 import de.cmis.test.General.GetAclOfRootFolder;
 import de.cmis.test.General.GetAllPropertyTypes;
@@ -36,16 +41,21 @@ public class AllTestsMain {
      *
      * Hier werden alle Tests in sinnvoller Reihenfolge durchlaufen
      * und die Ausgaben in eine H2-Datenbank geschrieben. 
+	 * @throws InterruptedException 
      */
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		
 		// Testeinstellungen festlegen
 		TestSetting setting = new TestSetting().getInstance();
 		
 		// Hibernate Session für Logging erzeugen
 		Tool testSession = new Tool();
-		testSession.openSession();		
+		testSession.openSession();
+		
+		// Bereinigen der Server um durch Testdurchläufe angelegte Objekte
+		CleanUpAlfresco.go(setting.getServerDefaultSetting("Alfresco"));
+		CleanUpOpenCmisServer.go(setting.getServerDefaultSetting("OpenCmisServer"));
 
 		// Allgemeine Tests
 		// Berücksichtigt nicht die Testeinstellung
@@ -64,12 +74,17 @@ public class AllTestsMain {
 		GetBasicRepositoryInfo.go(setting);
 		
 		// Order (Folder) Tests
-		TraversThroughRootFolderHirarchy.go(); // Ohne Settings
+		TraversThroughRootFolderHirarchy.go(); // Ohne Setting
 		CreateFolder.go(setting);
 		DeleteFolder.go(setting);
 		GetFolderHirarchyFromRootFolderOfRepository.go(setting);
+		GetFolderByPath.go(setting);
+		GetParentsOfFolder.go(setting);
 		
 		// Dokument Tests
+		GetPropertiesOfFirstDocumentInRootFolder.go(); // Ohne Setting
+		GetContentsOfFirstDocumentInRootFolder.go(); // Ohne Setting
+		GetImportantPropertyValuesFromFirstDocumentInRootFolder.go(setting);
 
 		CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
 

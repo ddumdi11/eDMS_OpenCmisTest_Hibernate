@@ -18,14 +18,19 @@ import de.cmis.test.Tool;
 
 public class TraversThroughRootFolderHirarchy {
 
-	public static List<Repository> getRepositories(String serverURL) {
+	public static List<Repository> getRepositories(String serverUrl) {
 		Map<String, String> parameters = new HashMap<>();
-		parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
 
 		parameters.put(SessionParameter.USER, "");
 		parameters.put(SessionParameter.PASSWORD, "");
 
-		parameters.put(SessionParameter.BROWSER_URL, serverURL);
+		if (serverUrl.contains("atom")) {
+			parameters.put(SessionParameter.ATOMPUB_URL, serverUrl);
+			parameters.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
+		} else if (serverUrl.contains("browser")) {
+			parameters.put(SessionParameter.BROWSER_URL, serverUrl);
+			parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
+		}
 
 		SessionFactory sessionFactory = SessionFactoryImpl.newInstance();
 		List<Repository> repositories = sessionFactory.getRepositories(parameters);
@@ -48,8 +53,8 @@ public class TraversThroughRootFolderHirarchy {
 
 	public static void go() {
 		Tool.printAndLog("Repository-Suche über EntryPoint Atompub (CMIS 1.0) OpenCmisServer");
-		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom";
-		List<Repository> repositories = getRepositories(serverURL);
+		String serverUrl = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom";
+		List<Repository> repositories = getRepositories(serverUrl);
 
 		for (Repository repository : repositories) {
 			Session session = repository.createSession();
@@ -57,10 +62,10 @@ public class TraversThroughRootFolderHirarchy {
 			printFolder(rootFolder, "");
 
 		}
-		
+
 		Tool.printAndLog("Repository-Suche über EntryPoint Atompub (CMIS 1.1) OpenCmisServer");
-		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom11";
-		repositories = getRepositories(serverURL);
+		serverUrl = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom11";
+		repositories = getRepositories(serverUrl);
 
 		for (Repository repository : repositories) {
 			Session session = repository.createSession();
@@ -68,10 +73,10 @@ public class TraversThroughRootFolderHirarchy {
 			printFolder(rootFolder, "");
 
 		}
-		
+
 		Tool.printAndLog("Repository-Suche über EntryPoint Atompub (CMIS 1.1) Browser");
-		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
-		repositories = getRepositories(serverURL);
+		serverUrl = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+		repositories = getRepositories(serverUrl);
 
 		for (Repository repository : repositories) {
 			Session session = repository.createSession();

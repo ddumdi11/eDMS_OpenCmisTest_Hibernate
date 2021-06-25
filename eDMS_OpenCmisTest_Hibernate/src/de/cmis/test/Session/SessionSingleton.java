@@ -133,10 +133,10 @@ public class SessionSingleton {
 		parameters.put(SessionParameter.USER, userName);
 		parameters.put(SessionParameter.PASSWORD, userPwd);
 		if (bindingType.contains("atom")) {
-			parameters.put(SessionParameter.ATOMPUB_URL, bindingUrl + bindingType);
+			parameters.put(SessionParameter.ATOMPUB_URL, bindingUrl);
 			parameters.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
 		} else if (bindingType.contains("browser")) {
-			parameters.put(SessionParameter.BROWSER_URL, bindingUrl + bindingType);
+			parameters.put(SessionParameter.BROWSER_URL, bindingUrl);
 			parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
 		}
 		parameters.put(SessionParameter.COMPRESSION, "true");
@@ -156,7 +156,11 @@ public class SessionSingleton {
 			throw new CmisConnectionException("Could not connect to the OpenCmisServer, " + "no repository found!");
 		}
 
-		session = sessionFactory.createSession(parameters);
+		// Create a new session with the repository
+		session = defaultRepository.createSession();
+
+		// Save connection for reuse
+		// connections.put(connectionName, session);
 
 		// Rückmeldung, dass die Session erzeugt wurde
 		Tool.printAndLog("Die Session wurde erzeugt!");

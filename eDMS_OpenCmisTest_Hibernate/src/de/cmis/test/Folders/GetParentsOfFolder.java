@@ -14,7 +14,7 @@ public class GetParentsOfFolder {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Folder document = (Folder) session.getObjectByPath("/My_Folder-0-0");
+		Folder document = (Folder) session.getObjectByPath("/My_Folder-0-1");
 
 		List<Folder> folders = document.getParents();
 

@@ -20,16 +20,22 @@ import org.apache.chemistry.opencmis.commons.enums.BindingType;
 
 import de.cmis.test.Tool;
 
-public class GetContentsOfFirstDocument {
+public class GetContentsOfFirstDocumentInRootFolder {
 
 	public static List<Repository> getRepositories(String serverURL) {
-		Map<String, String> parameters = new HashMap<>();
-		parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
+		Map<String, String> parameters = new HashMap<>();		
 
 		parameters.put(SessionParameter.USER, "");
 		parameters.put(SessionParameter.PASSWORD, "");
-
-		parameters.put(SessionParameter.BROWSER_URL, serverURL);
+		
+		if (serverURL.contains("atom")) {
+			parameters.put(SessionParameter.ATOMPUB_URL, serverURL);
+			parameters.put(SessionParameter.BINDING_TYPE, BindingType.ATOMPUB.value());
+		} else if (serverURL.contains("browser")) {
+			parameters.put(SessionParameter.BROWSER_URL, serverURL);
+			parameters.put(SessionParameter.BINDING_TYPE, BindingType.BROWSER.value());
+		}
+		
 
 		SessionFactory sessionFactory = SessionFactoryImpl.newInstance();
 		List<Repository> repositories = sessionFactory.getRepositories(parameters);
@@ -84,8 +90,31 @@ public class GetContentsOfFirstDocument {
 	}
 
 	public static void go() {
-		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+		Tool.printAndLog("EntryPoint Atompub (CMIS 1.0)");
+		String serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom";
 		List<Repository> repositories = getRepositories(serverURL);
+
+		for (Repository repository : repositories) {
+			Session session = repository.createSession();
+			Folder rootFolder = session.getRootFolder();
+			printFirstDocumentContent(rootFolder);
+
+		}
+		
+		Tool.printAndLog("EntryPoint Atompub (CMIS 1.1)");
+		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/atom11";
+		repositories = getRepositories(serverURL);
+
+		for (Repository repository : repositories) {
+			Session session = repository.createSession();
+			Folder rootFolder = session.getRootFolder();
+			printFirstDocumentContent(rootFolder);
+
+		}
+		
+		Tool.printAndLog("EntryPoint Browser (CMIS 1.0)");
+		serverURL = "http://localhost:8089/chemistry-opencmis-server-inmemory-1.1.0/browser";
+		repositories = getRepositories(serverURL);
 
 		for (Repository repository : repositories) {
 			Session session = repository.createSession();
