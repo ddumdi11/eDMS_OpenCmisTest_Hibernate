@@ -19,7 +19,7 @@ import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class GetContentStreamOfDocument {
+public class SetAndGetContentStreamOfDocument {
 
 	private static String localFilePath = "./src/com/sample/util/Files/test.json";
 

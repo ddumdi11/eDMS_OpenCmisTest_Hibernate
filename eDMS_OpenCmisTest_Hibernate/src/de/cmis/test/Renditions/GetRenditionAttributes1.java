@@ -1,21 +1,19 @@
 package de.cmis.test.Renditions;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.chemistry.opencmis.client.api.Document;
 import org.apache.chemistry.opencmis.client.api.Rendition;
 import org.apache.chemistry.opencmis.client.api.Session;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class GetRenditionAttributes1 {
 
-	
-
-	public static void main(String args[]) throws IOException {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		Document document = (Document) session.getObjectByPath("/sampleDoc.json");
 

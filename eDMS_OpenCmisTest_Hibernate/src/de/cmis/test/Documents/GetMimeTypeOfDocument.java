@@ -8,7 +8,7 @@ import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class getMimeTypeOfDocument {
+public class GetMimeTypeOfDocument {
 
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);

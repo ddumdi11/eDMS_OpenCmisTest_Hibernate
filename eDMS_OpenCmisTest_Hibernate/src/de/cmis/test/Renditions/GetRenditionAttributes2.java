@@ -1,6 +1,5 @@
 package de.cmis.test.Renditions;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -8,12 +7,12 @@ import org.apache.chemistry.opencmis.client.api.Document;
 import org.apache.chemistry.opencmis.client.api.Rendition;
 import org.apache.chemistry.opencmis.client.api.Session;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class GetRenditionAttributes2 {
 
-	
 	private static void printRendition(Rendition rendition) {
 		BigInteger bigHeight = rendition.getBigHeight();
 		BigInteger bigLength = rendition.getBigLength();
@@ -44,10 +43,10 @@ public class GetRenditionAttributes2 {
 
 	}
 
-	public static void main(String args[]) throws IOException {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		//Document document = (Document) session.getObjectByPath("/sampleDoc.json");
+		// Document document = (Document) session.getObjectByPath("/sampleDoc.json");
 		Document document = (Document) session.getObjectByPath("/07_S_Verweis.docx");
 
 		List<Rendition> renditions = document.getRenditions();

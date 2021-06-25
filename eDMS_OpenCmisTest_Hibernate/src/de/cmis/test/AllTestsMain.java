@@ -2,10 +2,22 @@ package de.cmis.test;
 
 import java.io.IOException;
 
+import de.cmis.test.Documents.Append2ContentStreamOfDocument;
+import de.cmis.test.Documents.CheckUnfilingSupport;
 import de.cmis.test.Documents.CheckVersioning;
+import de.cmis.test.Documents.ContentStreamCRUD;
+import de.cmis.test.Documents.CreateDocumentWithContentInRootFolder;
+import de.cmis.test.Documents.CreateEmptyDocumentInRootFolder;
+import de.cmis.test.Documents.CreateUnfiledDocumentInRootFolder;
+import de.cmis.test.Documents.DeleteContentStreamOfDocument;
+import de.cmis.test.Documents.DeleteDocument;
 import de.cmis.test.Documents.GetContentsOfFirstDocumentInRootFolder;
 import de.cmis.test.Documents.GetImportantPropertyValuesFromFirstDocumentInRootFolder;
+import de.cmis.test.Documents.GetMimeTypeOfDocument;
 import de.cmis.test.Documents.GetPropertiesOfFirstDocumentInRootFolder;
+import de.cmis.test.Documents.RenameDocument;
+import de.cmis.test.Documents.SetAndGetContentStreamOfDocument;
+import de.cmis.test.Documents.UpdateContentOfDocument;
 import de.cmis.test.Folders.CreateFolder;
 import de.cmis.test.Folders.DeleteFolder;
 import de.cmis.test.Folders.GetFolderByPath;
@@ -19,9 +31,40 @@ import de.cmis.test.General.GetBasicTypesOfCmisSpecification;
 import de.cmis.test.General.GetRootFolderId;
 import de.cmis.test.General.GetSessionFromRepositoryEndpoint;
 import de.cmis.test.General.GetSessionToRepository;
+import de.cmis.test.ItemsRelationshipsPolicies.ApplyPolicyToObject;
+import de.cmis.test.ItemsRelationshipsPolicies.CheckAllowedSourceAndTargetTypes;
+import de.cmis.test.ItemsRelationshipsPolicies.CheckIfRelationshipExists;
+import de.cmis.test.ItemsRelationshipsPolicies.CheckItemTypeSupport;
+import de.cmis.test.ItemsRelationshipsPolicies.CheckPolicyControllabilityOfObject;
+import de.cmis.test.ItemsRelationshipsPolicies.CheckPolicySupport;
+import de.cmis.test.ItemsRelationshipsPolicies.CheckRelationshipSupport;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateFiledPolicy;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateItemCustomType;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateItemFiled;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateItemUnfiled;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateRelationship;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateUnfiledPolicy;
+import de.cmis.test.ItemsRelationshipsPolicies.GetPoliciesAppliedToObject;
+import de.cmis.test.MetadataAndTypes.ApplyConstraintsOnProperty;
+import de.cmis.test.MetadataAndTypes.GetCreatablePropertyTypes;
+import de.cmis.test.MetadataAndTypes.GetMetadata1;
+import de.cmis.test.MetadataAndTypes.GetMetadata2;
+import de.cmis.test.MetadataAndTypes.GetPropertyDefinitionsFromProperty;
+import de.cmis.test.MetadataAndTypes.GetTypeMutabilitySettings;
+import de.cmis.test.MetadataAndTypes.GetTypeOfObject;
+import de.cmis.test.MetadataAndTypes.GetTypeSettableAttributes;
 import de.cmis.test.Properties.GetBasicRepositoryInfo;
 import de.cmis.test.Properties.GetPropertiesOfFolderType;
 import de.cmis.test.Properties.GetPropertiesOfRootFolder;
+import de.cmis.test.Renditions.AccessContentAssociatedWithRendition1;
+import de.cmis.test.Renditions.AccessContentAssociatedWithRendition2;
+import de.cmis.test.Renditions.AccessContentAssociatedWithRendition3;
+import de.cmis.test.Renditions.GetDocumentObjectTypeDefinitions;
+import de.cmis.test.Renditions.GetRenditionAttributes1;
+import de.cmis.test.Renditions.GetRenditionAttributes2;
+import de.cmis.test.SecondaryTypes.RemoveSecondaryType;
+import de.cmis.test.SecondaryTypes.SetSecondaryType;
+import de.cmis.test.SecondaryTypes.SetSecondaryType2;
 
 /**
  * Ein CMIS-Testprogramm.
@@ -55,7 +98,8 @@ public class AllTestsMain {
 		
 		// Bereinigen der Server um durch Testdurchläufe angelegte Objekte
 		CleanUpAlfresco.go(setting.getServerDefaultSetting("Alfresco"));
-		CleanUpOpenCmisServer.go(setting.getServerDefaultSetting("OpenCmisServer"));
+		CleanUpOpenCmisServer.go();
+		
 
 		// Allgemeine Tests
 		// Berücksichtigt nicht die Testeinstellung
@@ -85,8 +129,61 @@ public class AllTestsMain {
 		GetPropertiesOfFirstDocumentInRootFolder.go(); // Ohne Setting
 		GetContentsOfFirstDocumentInRootFolder.go(); // Ohne Setting
 		GetImportantPropertyValuesFromFirstDocumentInRootFolder.go(setting);
-
+		CreateEmptyDocumentInRootFolder.go(setting);
+		CreateDocumentWithContentInRootFolder.go(setting);
+		CheckUnfilingSupport.go(setting);
+		CreateUnfiledDocumentInRootFolder.go(setting);
+		RenameDocument.go(setting);
+		UpdateContentOfDocument.go(setting);
 		CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
+		DeleteDocument.go(setting);
+		ContentStreamCRUD.go(setting);
+		SetAndGetContentStreamOfDocument.go(setting);
+		Append2ContentStreamOfDocument.go(setting);
+		DeleteContentStreamOfDocument.go(setting);
+		GetMimeTypeOfDocument.go(setting);
+		
+		// Wiedergaben (Renditions) Tests
+		GetRenditionAttributes1.go(setting);
+		GetRenditionAttributes2.go(setting);
+		AccessContentAssociatedWithRendition1.go(setting);
+		AccessContentAssociatedWithRendition2.go(setting);
+		AccessContentAssociatedWithRendition3.go(setting);
+		GetDocumentObjectTypeDefinitions.go(setting);
+		
+		// Artikel/Gegenstände/Positionen (Items), Beziehungen (Relationships), Richtlinien (Policies)
+		CheckItemTypeSupport.go(setting);
+		CreateItemUnfiled.go(setting);
+		CreateItemFiled.go(setting);
+		CreateItemCustomType.go(setting);
+		CheckRelationshipSupport.go(setting);
+		CheckIfRelationshipExists.go(setting);
+		CreateRelationship.go(setting);
+		CheckAllowedSourceAndTargetTypes.go(setting);
+		CheckPolicySupport.go(setting);
+		CheckPolicyControllabilityOfObject.go(setting);
+		CreateUnfiledPolicy.go(setting);
+		CreateFiledPolicy.go(setting);
+		ApplyPolicyToObject.go(setting);
+		GetPoliciesAppliedToObject.go(setting);
+		
+		// Sekundäre Typen (Secondary Types) Tests
+		SetSecondaryType.go(setting);
+		SetSecondaryType2.go(setting);
+		RemoveSecondaryType.go(setting);
+		
+		// Metadaten (Metadata) und Typen (Types)
+		GetMetadata1.go(setting);
+		GetMetadata2.go(setting);
+		GetTypeOfObject.go(setting);
+		GetPropertyDefinitionsFromProperty.go(setting);
+		ApplyConstraintsOnProperty.go(setting);
+		GetTypeMutabilitySettings.go(setting);
+		GetTypeSettableAttributes.go(setting);
+		GetCreatablePropertyTypes.go(setting);
+		
+		
+		
 
 		
 		
