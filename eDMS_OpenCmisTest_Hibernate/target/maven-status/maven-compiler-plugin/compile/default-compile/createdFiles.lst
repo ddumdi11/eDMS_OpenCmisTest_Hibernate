@@ -35,6 +35,7 @@ de/cmis/test/ACL/CheckAclSupport.class
 de/cmis/test/IntroductionCmis/GetTypeDefinitionOfObjectType.class
 de/cmis/test/MetadataAndTypes/GetTypeMutabilitySettings.class
 de/cmis/test/General/AtomPubBindingRepositoryUtil.class
+de/cmis/test/General/GetAllRepositoriesAllBindings.class
 de/cmis/test/General/TestCmisGetIdOfRootFolder.class
 de/cmis/test/ItemsRelationshipsPolicies/CreatePolicy.class
 de/cmis/test/Documents/CreateUnfiledDocumentInRootFolder.class
@@ -81,6 +82,7 @@ de/cmis/test/SecondaryTypes/SetSecondaryType.class
 de/cmis/test/ItemsRelationshipsPolicies/CreateItemFiled.class
 de/cmis/test/RepositoryCapabilities/CheckVersioningCapabilities.class
 de/cmis/test/General/TestCmisGetBasicTypes.class
+de/cmis/test/General/BrowserBindingRepositoryUtil.class
 de/cmis/test/IntroductionCmis/GetAllChildTypesForObject.class
 de/cmis/test/HibernateUtil.class
 de/cmis/test/RepositoryCapabilities/CheckContentStreamUpdationCapability.class
@@ -89,7 +91,6 @@ de/cmis/test/Documents/UpdateContentOfDocument.class
 de/cmis/test/Properties/TestCmisGetPropertiesOfRootFolder.class
 de/cmis/test/Folders/GetFolderByPath.class
 de/cmis/test/ACL/GetAclCapabilities.class
-de/cmis/test/General/Test.class
 de/cmis/test/ACL/GetAclsAssociatedWithObject.class
 de/cmis/test/Documents/AccessContentAssociatedWithRendition3.class
 de/cmis/test/TestHibernate.class

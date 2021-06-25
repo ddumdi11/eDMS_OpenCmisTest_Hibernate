@@ -1,18 +1,34 @@
 package de.cmis.test;
 
+/**
+ * Tool zum Erfassen der Print-Ausgaben in H2-Datenbank für spätere Auswertung
+ * in Berichtsform
+ */
+
 public class Tool {
-	
+
 	static org.hibernate.Session session = null;
-	
-	public void openSession () {
+
+	/**
+	 * Hibernate-Session öffnen.
+	 */
+	public void openSession() {
 		session = HibernateUtil.getSessionFactory().openSession();
 	}
-	
-	public void closeSession () {
+
+	/**
+	 * Hibernate-Session schließen.
+	 */
+	public void closeSession() {
 		session.close();
 		HibernateUtil.shutdown();
 	}
 
+	/**
+	 * Ersetzt den System.out.println()-Befehl in den Testklassen.
+	 * 
+	 * @param messageString
+	 */
 	public static void printAndLog(String messageString) {
 		session.beginTransaction();
 		System.out.println(messageString);
@@ -22,19 +38,19 @@ public class Tool {
 		String namePackage = namePackageAndTest.substring(0, namePackageAndTest.lastIndexOf("."));
 		String nameTest = namePackageAndTest.substring(namePackageAndTest.lastIndexOf(".") + 1,
 				namePackageAndTest.length());
-		System.out.println("\tPackage Name: " + namePackage);
-		System.out.println("\tTest Name: " + nameTest);
-		
-		//Add new TestMessage object
-        TestMessageEntity message = new TestMessageEntity();
-        message.setTestPackage(namePackage);
-        message.setTestName(nameTest);
-        message.setTestErgebnis(messageString);
-        message.setTestDatum();		
-		
+		// System.out.println("\tPackage Name: " + namePackage);
+		// System.out.println("\tTest Name: " + nameTest);
+
+		// Add new TestMessage object
+		TestMessageEntity message = new TestMessageEntity();
+		message.setTestPackage(namePackage);
+		message.setTestName(nameTest);
+		message.setTestErgebnis(messageString);
+		message.setTestDatum();
+
 		session.save(message);
-        
-        session.getTransaction().commit();
+
+		session.getTransaction().commit();
 
 	}
 

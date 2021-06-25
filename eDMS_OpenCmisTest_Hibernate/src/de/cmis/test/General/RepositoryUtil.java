@@ -9,7 +9,7 @@ import org.apache.chemistry.opencmis.client.api.SessionFactory;
 import org.apache.chemistry.opencmis.client.runtime.SessionFactoryImpl;
 
 /**
- * Abstract super class for all the types of bindings.
+ * Abstrakte Oberklasse für alle Verbindungstypen.
  * 
  *
  */
@@ -29,7 +29,7 @@ public abstract class RepositoryUtil {
 	public abstract void populateProperties();
 
 	/**
-	 * Return all the repositories for given end point.
+	 * Gibt alle Repositories für gegebenen Endpoint zurück.
 	 * 
 	 * @param parameters
 	 * @return
