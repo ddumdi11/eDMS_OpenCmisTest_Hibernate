@@ -7,7 +7,14 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class TestCmisGetBasicTypes {
+/**
+ * Gibt die Basistypen zur eingestellten CMIS-Spezifikation aus.
+ * 
+ * @author Krishna / Diederichs
+ *
+ */
+
+public class GetBasicTypesOfCmisSpecification {
 
 	public static void go() {
 		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");

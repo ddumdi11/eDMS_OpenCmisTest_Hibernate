@@ -11,7 +11,7 @@ import org.apache.chemistry.opencmis.client.api.Repository;
 
 import de.cmis.test.Tool;
 
-public class GetAllRepositoriesAllBindings {
+public class GetAllRepositoriesByAllBindings {
 
 	public static void go() {
 
