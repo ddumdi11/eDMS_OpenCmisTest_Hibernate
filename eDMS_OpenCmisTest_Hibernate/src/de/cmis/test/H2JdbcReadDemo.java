@@ -1,10 +1,18 @@
 package de.cmis.test;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+/**
+ * Vorläufige Hilfe zur Datenbankabfrage.
+ * 
+ * @author Thorsten Diederichs
+ *
+ */
 
 public class H2JdbcReadDemo {
 	// JDBC driver name and database URL
@@ -15,6 +23,12 @@ public class H2JdbcReadDemo {
 	static final String USER = "sa";
 	static final String PASS = "";
 
+	/**
+	 * Gibt alle erfassten Ausgaben chronologisch aus.
+	 * 
+	 * @param args
+	 */
+	
 	public static void main(String[] args) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -29,7 +43,7 @@ public class H2JdbcReadDemo {
 			// STEP 3: Execute a query
 			System.out.println("Connected database successfully...");
 			stmt = conn.createStatement();
-			String sql = "SELECT * FROM TBL_CMISTEST";
+			String sql = "SELECT * FROM TBL_CMISTESTS";
 			ResultSet rs = stmt.executeQuery(sql);
 
 			// STEP 4: Extract data from result set
@@ -38,7 +52,7 @@ public class H2JdbcReadDemo {
 				int id = rs.getInt("id");
 				String packageName = rs.getString("Test_Package");
 				String testName = rs.getString("Test_Name");
-				String testResult = rs.getString("Test_Ergebnis");
+				String testOutput = rs.getString("Test_Output");
 				String testDatum = rs.getString("Test_Datum");
 				
 
@@ -46,7 +60,7 @@ public class H2JdbcReadDemo {
 				System.out.println("ID: " + id);
 				System.out.println("Package: " + packageName);
 				System.out.println("Test: " + testName);
-				System.out.println("Ergebnis: " + testResult);
+				System.out.println("Ergebnis: " + testOutput);
 				System.out.println("Datum: " + testDatum);
 				
 			}

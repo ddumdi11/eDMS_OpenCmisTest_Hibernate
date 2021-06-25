@@ -7,26 +7,32 @@ import java.util.Map;
 import org.apache.chemistry.opencmis.client.api.Repository;
 import org.apache.chemistry.opencmis.client.api.SessionFactory;
 import org.apache.chemistry.opencmis.client.runtime.SessionFactoryImpl;
+import org.apache.chemistry.opencmis.commons.SessionParameter;
+
 
 /**
- * Abstrakte Oberklasse für alle Verbindungstypen.
+ * Abstrakte Oberklasse für Atompub-Verbindungen.
  * 
- *
+ * @author Krishna / Diederichs
  */
-public abstract class RepositoryUtil {
+public abstract class RepositoryUtilBrowser {
 	private String userName;
 	private String password;
 	private String urlToConnect;
 
 	protected Map<String, String> parameters = new HashMap<>();
 
-	public RepositoryUtil(String userName, String password, String urlToConnect) {
+	public RepositoryUtilBrowser(String userName, String password, String urlToConnect) {
 		this.userName = userName;
 		this.password = password;
 		this.urlToConnect = urlToConnect;
 	}
 
-	public abstract void populateProperties();
+	public void populateProperties() {
+		// user credentials
+		parameters.put(SessionParameter.USER, this.getUserName());
+		parameters.put(SessionParameter.PASSWORD, this.getPassword());
+	}
 
 	/**
 	 * Gibt alle Repositories für gegebenen Endpoint zurück.

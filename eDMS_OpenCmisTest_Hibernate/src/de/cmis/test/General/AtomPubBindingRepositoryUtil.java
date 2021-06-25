@@ -6,10 +6,10 @@ import org.apache.chemistry.opencmis.commons.enums.BindingType;
 /**
  * Repository-Ausgabe für Atompub-Verbindung.
  * 
- * @author Krishna / Thorsten Diederichs
+ * @author Krishna / Diederichs
  *
  */
-public class AtomPubBindingRepositoryUtil extends RepositoryUtil {
+public class AtomPubBindingRepositoryUtil extends RepositoryUtilAtomPub {
 
 	/**
 	 * Für diesen Test ist explizite Angabe der Verbindungs-Url und Benutzerdaten erforderlich.
