@@ -2,6 +2,11 @@ package de.cmis.test;
 
 import java.io.IOException;
 
+import de.cmis.test.ACL.AddAceToAclOfObject;
+import de.cmis.test.ACL.CheckAclSupport;
+import de.cmis.test.ACL.GetAclCapabilities;
+import de.cmis.test.ACL.GetAclsAssociatedWithObject;
+import de.cmis.test.ACL.MapAclsToAllowableActions;
 import de.cmis.test.Documents.Append2ContentStreamOfDocument;
 import de.cmis.test.Documents.CheckUnfilingSupport;
 import de.cmis.test.Documents.CheckVersioning;
@@ -181,6 +186,13 @@ public class AllTestsMain {
 		GetTypeMutabilitySettings.go(setting);
 		GetTypeSettableAttributes.go(setting);
 		GetCreatablePropertyTypes.go(setting);
+		
+		// Zugriffskontrolle (ACL - AccessControl)
+		CheckAclSupport.go(setting);
+		GetAclCapabilities.go(setting);
+		GetAclsAssociatedWithObject.go(setting);
+		MapAclsToAllowableActions.go(setting);
+		AddAceToAclOfObject.go(setting);
 		
 		
 		

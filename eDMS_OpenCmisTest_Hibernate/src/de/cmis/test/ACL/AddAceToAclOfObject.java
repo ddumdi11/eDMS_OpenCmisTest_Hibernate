@@ -19,7 +19,7 @@ import de.cmis.test.Session.SessionSingleton;
 
 public class AddAceToAclOfObject {
 
-	public static OperationContext getDefaultContext() {
+	private static OperationContext getDefaultContext() {
 		OperationContextImpl operationalContext = new OperationContextImpl();
 
 		Set<String> filterSet = new HashSet<String>();
