@@ -19,9 +19,9 @@ import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
-public class SetAndGetContentStreamOfDocument {
+public class GetContentStreamOfDocument {
 
-	private static String localFilePath = "./src/com/sample/util/Files/test.json";
+	private static String localFilePath = "./src/de/cmis/test/Files/test.json";
 
 	private static void setTheContentStream(Document document) {
 		/* Creating content stream */
@@ -53,8 +53,8 @@ public class SetAndGetContentStreamOfDocument {
 				System.out.print(str);
 			}
 		} catch (IOException e) {
-			Tool.printAndLog("Error occurred while processing the file content");
-			Tool.printAndLog(e.getMessage());
+			System.out.println("Error occurred while processing the file content");
+			System.out.println(e.getMessage());
 		}
 
 	}

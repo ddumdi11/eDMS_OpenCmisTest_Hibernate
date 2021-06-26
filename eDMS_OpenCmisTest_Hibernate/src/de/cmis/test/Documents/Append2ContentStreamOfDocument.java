@@ -21,8 +21,8 @@ import de.cmis.test.Session.SessionSingleton;
 
 public class Append2ContentStreamOfDocument {
 
-	private static String localFile1 = "./src/com/sample/util/Files/app1.log";
-	private static String localFile2 = "./src/com/sample/util/Files/app2.log";
+	private static String localFile1 = "./src/de/cmis/test/Files/app1.log";
+	private static String localFile2 = "./src/de/cmis/test/Files/app2.log";
 
 	private static void appendContentStream(Document document, File file) {
 		/* Creating content stream */
@@ -66,8 +66,8 @@ public class Append2ContentStreamOfDocument {
 				System.out.print(str);
 			}
 		} catch (IOException e) {
-			Tool.printAndLog("Error occurred while processing the file content");
-			Tool.printAndLog(e.getMessage());
+			System.out.println("Error occurred while processing the file content");
+			System.out.println(e.getMessage());
 		}
 
 	}

@@ -20,11 +20,10 @@ import de.cmis.test.Session.SessionSingleton;
 public class CreateDocumentWithContentInRootFolder {
 
 	public static void go(TestSetting setting) throws IOException {
-		File inputFile = new File("./src/com/sample/util/Files/07_S_Verweis.docx");
-
-		String mimeType = Files.probeContentType(inputFile.toPath());
-
 		Session session = SessionSingleton.getInstance().getSession(setting);
+		
+		File inputFile = new File("./src/de/cmis/test/Files/07_S_Verweis.docx");
+		String mimeType = Files.probeContentType(inputFile.toPath());
 
 		// Dokument löschen, falls vorhanden
 		try {

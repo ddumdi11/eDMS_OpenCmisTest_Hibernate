@@ -1,0 +1,4 @@
+SELECT * FROM cmis:document
+SELECT * FROM cmis:folder
+SELECT * FROM cmis:document where cmis:name='a.txt'
+SELECT cmis:name, cmis:lastModificationDate FROM cmis:document

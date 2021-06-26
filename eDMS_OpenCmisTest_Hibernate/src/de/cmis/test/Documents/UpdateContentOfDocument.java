@@ -23,7 +23,7 @@ public class UpdateContentOfDocument {
 
 		Tool.printAndLog("Content stream length before updating : " + document.getContentStreamLength());
 
-		File inputFile = new File("./src/com/sample/util/Files/Hardware 10_1_2020.docx");
+		File inputFile = new File("./src/de/cmis/test/Files/Hardware 10_1_2020.docx");
 		String mimeType = Files.probeContentType(inputFile.toPath());
 
 		try (InputStream inputStream = new FileInputStream(inputFile)) {
