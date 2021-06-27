@@ -10,6 +10,24 @@ import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
+/**
+ * CMIS: Repository-Informationserweiterungen abrufen
+ * <p>
+ * Die folgenden Anweisungen werden verwendet, um die Erweiterungen auf
+ * Repository-Ebene abzurufen.
+ * <p>
+ * RepositoryInfo repoInfo = session.getRepositoryInfo();
+ * List<CmisExtensionElement>-Erweiterungen = repoInfo.getExtensions();<p>
+ * <p>
+ * ------------------------------------------------------------------------
+ * <p>
+ * CMIS: Get repository information extensions<p>
+ * <p>
+ * Below statements are used to get the extensions at repository level.<p>
+ * <p>
+ * RepositoryInfo repoInfo = session.getRepositoryInfo();
+ * List<CmisExtensionElement> extensions = repoInfo.getExtensions();<p>
+ */
 public class GetExtensionsAtRepositoryLevel {
 
 	private static void printExtensions(List<CmisExtensionElement> extensions, String space) {

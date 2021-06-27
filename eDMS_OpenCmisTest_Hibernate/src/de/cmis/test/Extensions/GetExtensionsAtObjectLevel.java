@@ -11,6 +11,23 @@ import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
+/** Cmis: Erweiterungen auf Objektebene abrufen
+* <p>
+* Die folgenden Anweisungen werden verwendet, um die mit dem cmis-Objekt verknüpften Erweiterungen abzurufen.
+* <pre>
+* CmisObject cmisObject = session.getObject("134");
+* List<CmisExtensionElement> extensions = cmisObject.getExtensions(ExtensionLevel.OBJECT);
+* </pre><p>
+* ---------------------------------------------------------------------------------------------------
+* <p>
+* Cmis: Get object level extensions
+* <p>
+* Below statements are used to get the extensions associated with cmis object.
+* <pre>
+* CmisObject cmisObject = session.getObject("134");
+* List<CmisExtensionElement> extensions = cmisObject.getExtensions(ExtensionLevel.OBJECT);
+* </pre>
+*/
 public class GetExtensionsAtObjectLevel {
 
 	private static void printExtensions(List<CmisExtensionElement> extensions, String space) {

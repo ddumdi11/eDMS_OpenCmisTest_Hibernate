@@ -1,16 +1,1 @@
-de.cmis.test
-de.cmis.test.ACL
 de.cmis.test.ChangeLogSupport
-de.cmis.test.Documents
-de.cmis.test.Extensions
-de.cmis.test.Folders
-de.cmis.test.General
-de.cmis.test.IntroductionCmis
-de.cmis.test.ItemsRelationshipsPolicies
-de.cmis.test.MetadataAndTypes
-de.cmis.test.Properties
-de.cmis.test.Queries
-de.cmis.test.Renditions
-de.cmis.test.RepositoryCapabilities
-de.cmis.test.SecondaryTypes
-de.cmis.test.Session
