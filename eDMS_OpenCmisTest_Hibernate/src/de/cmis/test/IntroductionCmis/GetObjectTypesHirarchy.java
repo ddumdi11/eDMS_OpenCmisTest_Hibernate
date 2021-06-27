@@ -6,6 +6,7 @@ import org.apache.chemistry.opencmis.client.api.ObjectType;
 import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.client.api.Tree;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
@@ -13,7 +14,7 @@ public class GetObjectTypesHirarchy {
 
 	private static final String NULL_STRING = null;
 
-	public static void printTypeAndParentType(List<Tree<ObjectType>> types) {
+	private static void printTypeAndParentType(List<Tree<ObjectType>> types) {
 
 		for (Tree<ObjectType> typeTree : types) {
 			ObjectType objType = typeTree.getItem();
@@ -33,8 +34,8 @@ public class GetObjectTypesHirarchy {
 
 	}
 
-	public static void main(String args[]) {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		List<Tree<ObjectType>> typeDescendants = session.getTypeDescendants(null, -1, false);
 

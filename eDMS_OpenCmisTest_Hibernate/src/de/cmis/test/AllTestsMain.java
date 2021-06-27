@@ -2,6 +2,8 @@ package de.cmis.test;
 
 import java.io.IOException;
 
+import org.apache.chemistry.opencmis.commons.impl.jaxb.GetTypeChildren;
+
 import de.cmis.test.ACL.AddAceToAclOfObject;
 import de.cmis.test.ACL.CheckAclSupport;
 import de.cmis.test.ACL.GetAclCapabilities;
@@ -37,6 +39,16 @@ import de.cmis.test.General.GetBasicTypesOfCmisSpecification;
 import de.cmis.test.General.GetRootFolderId;
 import de.cmis.test.General.GetSessionFromRepositoryEndpoint;
 import de.cmis.test.General.GetSessionToRepository;
+import de.cmis.test.IntroductionCmis.GetObjectIdOfRootFolder;
+import de.cmis.test.IntroductionCmis.GetObjectTypes;
+import de.cmis.test.IntroductionCmis.GetObjectTypesHirarchy;
+import de.cmis.test.IntroductionCmis.GetPropertyDefinitionsOfType;
+import de.cmis.test.IntroductionCmis.GetSupportedCmisVersionOfRepository;
+import de.cmis.test.IntroductionCmis.GetTypeDefinitionOfType;
+import de.cmis.test.IntroductionCmis.GetTypeDescendantsOfType;
+import de.cmis.test.IntroductionCmis.GetAllBaseTypesOfRepository;
+import de.cmis.test.IntroductionCmis.GetAllTypeChildren;
+import de.cmis.test.IntroductionCmis.GetAllTypeChildrenOfType;
 import de.cmis.test.ItemsRelationshipsPolicies.ApplyPolicyToObject;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckAllowedSourceAndTargetTypes;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckIfRelationshipExists;
@@ -258,9 +270,20 @@ public class AllTestsMain {
 		// ACL (AccessControlList) Fähigkeiten/Funktionen
 		CheckAclCapabilities.go(setting);
 		// Allgemein
-		GetVendorNameProductNameProductVersionOfRepository.go(setting);
-				
+		GetVendorNameProductNameProductVersionOfRepository.go(setting);		
+		//System.exit(0);
 		
+		// Einführung
+		GetSupportedCmisVersionOfRepository.go(setting);
+		GetObjectIdOfRootFolder.go(setting);
+		GetObjectTypes.go(setting);
+		GetAllTypeChildren.go(setting);
+		GetAllTypeChildrenOfType.go(setting);
+		GetTypeDescendantsOfType.go(setting);
+		GetTypeDefinitionOfType.go(setting);
+		GetPropertyDefinitionsOfType.go(setting);
+		GetAllBaseTypesOfRepository.go(setting);
+		GetObjectTypesHirarchy.go(setting);
 		System.exit(0);
 		
 
