@@ -28,6 +28,9 @@ import de.cmis.test.Documents.GetPropertiesOfFirstDocumentInRootFolder;
 import de.cmis.test.Documents.RenameDocumentInTestFolder;
 import de.cmis.test.Documents.SetContentStreamOfDocument;
 import de.cmis.test.Documents.UpdateContentOfDocument;
+import de.cmis.test.Extensions.GetExtensionsAtObjectLevel;
+import de.cmis.test.Extensions.GetExtensionsAtPropertyLevel;
+import de.cmis.test.Extensions.GetExtensionsAtRepositoryLevel;
 import de.cmis.test.Folders.CreateFolder;
 import de.cmis.test.Folders.DeleteFolder;
 import de.cmis.test.Folders.GetFolderByPath;
@@ -295,7 +298,9 @@ public class AllTestsMain {
 		System.exit(0);
 
 		// Mit Erweiterungen arbeiten (Working with Extensions)
-		
+		GetExtensionsAtRepositoryLevel.go(setting);
+		GetExtensionsAtObjectLevel.go(setting);
+		GetExtensionsAtPropertyLevel.go(setting);
 		System.exit(0);
 		
 		
