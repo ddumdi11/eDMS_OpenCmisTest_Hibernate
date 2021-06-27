@@ -16,7 +16,6 @@ import org.apache.chemistry.opencmis.client.runtime.repository.ObjectFactoryImpl
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 
 import de.cmis.test.TestSetting;
-import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class GetContentStreamOfDocument {
@@ -67,7 +66,7 @@ public class GetContentStreamOfDocument {
 		properties.put("cmis:objectTypeId", "cmis:document");
 		properties.put("cmis:name", "sampleDoc.json");
 
-		Folder rootFolder = session.getRootFolder();
+		Folder rootFolder = (Folder) session.getObjectByPath("/Test");
 
 		Document document = rootFolder.createDocument(properties, null, null);
 

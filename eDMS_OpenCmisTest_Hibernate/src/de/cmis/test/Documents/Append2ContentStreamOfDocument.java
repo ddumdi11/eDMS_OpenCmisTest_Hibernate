@@ -16,7 +16,6 @@ import org.apache.chemistry.opencmis.client.runtime.repository.ObjectFactoryImpl
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 
 import de.cmis.test.TestSetting;
-import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class Append2ContentStreamOfDocument {
@@ -27,8 +26,12 @@ public class Append2ContentStreamOfDocument {
 	private static void appendContentStream(Document document, File file) {
 		/* Creating content stream */
 		ObjectFactoryImpl objectFactory = new ObjectFactoryImpl();
-		try (InputStream stream = new FileInputStream(file)) {
+		try (InputStream stream = new FileInputStream(file)) {			
 			String mimetype = Files.probeContentType(file.toPath());
+			// Mimetype von .log wird offenbar nicht richtig erkannt
+			if (mimetype == null) {
+				mimetype = "application/log";
+			}
 			ContentStream contentStream = objectFactory.createContentStream(file.getName(), file.length(), mimetype,
 					stream);
 			document.appendContentStream(contentStream, true, true);
@@ -38,14 +41,21 @@ public class Append2ContentStreamOfDocument {
 		}
 	}
 
-	private static void setContentStream(Document document, File file) {
+	private static void setTheContentStream(Document document) {
 		/* Creating content stream */
 		ObjectFactoryImpl objectFactory = new ObjectFactoryImpl();
+		File file = new File(localFile1);
+
 		try (InputStream stream = new FileInputStream(file)) {
 			String mimetype = Files.probeContentType(file.toPath());
+			// Mimetype von .log wird offenbar nicht richtig erkannt
+			if (mimetype == null) {
+				mimetype = "application/log";
+			}
+			System.out.println(mimetype);
 			ContentStream contentStream = objectFactory.createContentStream(file.getName(), file.length(), mimetype,
 					stream);
-			document.setContentStream(contentStream, true, true);
+			document.setContentStream(contentStream, false, true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,16 +85,16 @@ public class Append2ContentStreamOfDocument {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		/* Create the document 'sampleDoc.json' */
+		/* Create the document 'application.log' */
 		Map<String, String> properties = new HashMap<>();
 		properties.put("cmis:objectTypeId", "cmis:document");
 		properties.put("cmis:name", "application.log");
 
-		Folder rootFolder = session.getRootFolder();
+		Folder rootFolder = (Folder) session.getObjectByPath("/Test");
 
 		Document document = rootFolder.createDocument(properties, null, null);
 
-		setContentStream(document, new File(localFile1));
+		setTheContentStream(document);
 		appendContentStream(document, new File(localFile2));
 
 		readTheContentsOfTheDocument(document);

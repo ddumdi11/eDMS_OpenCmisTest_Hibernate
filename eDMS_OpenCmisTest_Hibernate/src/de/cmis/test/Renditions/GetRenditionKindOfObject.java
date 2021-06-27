@@ -19,7 +19,7 @@ public class GetRenditionKindOfObject {
 		List<Rendition> renditions = document.getRenditions();
 
 		if (renditions == null) {
-			System.out.println("No renditions are existed for this object");
+			System.out.println("No renditions are existing for this object");
 			return;
 		}
 

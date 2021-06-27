@@ -12,12 +12,8 @@ import java.util.Map;
 import org.apache.chemistry.opencmis.client.api.Document;
 import org.apache.chemistry.opencmis.client.api.Folder;
 import org.apache.chemistry.opencmis.client.api.Session;
-import org.apache.chemistry.opencmis.client.api.SessionFactory;
-import org.apache.chemistry.opencmis.client.runtime.SessionFactoryImpl;
 import org.apache.chemistry.opencmis.client.runtime.repository.ObjectFactoryImpl;
-import org.apache.chemistry.opencmis.commons.SessionParameter;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
-import org.apache.chemistry.opencmis.commons.enums.BindingType;
 
 import de.cmis.test.TestSetting;
 import de.cmis.test.Session.SessionSingleton;
@@ -33,6 +29,7 @@ public class SetContentStreamOfDocument {
 
 		try (InputStream stream = new FileInputStream(file)) {
 			String mimetype = Files.probeContentType(file.toPath());
+			System.out.println(mimetype);
 			ContentStream contentStream = objectFactory.createContentStream(file.getName(), file.length(), mimetype,
 					stream);
 			document.setContentStream(contentStream, true, true);
@@ -70,7 +67,7 @@ public class SetContentStreamOfDocument {
 		properties.put("cmis:objectTypeId", "cmis:document");
 		properties.put("cmis:name", "test.json");
 
-		Folder rootFolder = session.getRootFolder();
+		Folder rootFolder = (Folder) session.getObjectByPath("/Test");
 
 		Document document = rootFolder.createDocument(properties, null, null);
 

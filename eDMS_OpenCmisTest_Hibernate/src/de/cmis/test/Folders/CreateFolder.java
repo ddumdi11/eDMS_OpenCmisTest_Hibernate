@@ -15,11 +15,11 @@ public class CreateFolder {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Folder rootFolder = session.getRootFolder();
+		Folder rootFolder = (Folder) session.getObjectByPath("/Test");
 
 		Map<String, String> properties = new HashMap<>();
 		properties.put("cmis:objectTypeId", "cmis:folder");
-		properties.put("cmis:name", "My_Folder-0-3");
+		properties.put("cmis:name", "My_Folder-0-11");
 
 		Folder folder = rootFolder.createFolder(properties);
 

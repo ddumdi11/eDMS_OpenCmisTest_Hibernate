@@ -16,12 +16,12 @@ public class AccessContentAssociatedWithRendition2 {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Document document = (Document) session.getObjectByPath("/sampleDoc.json");
+		Document document = (Document) session.getObjectByPath("/Test/07_S_Verweis.docx");
 
 		List<Rendition> renditions = document.getRenditions();
 
 		if (renditions == null) {
-			Tool.printAndLog("No renditions are existed for this object");
+			Tool.printAndLog("No renditions are existing for this object");
 			return;
 		}
 

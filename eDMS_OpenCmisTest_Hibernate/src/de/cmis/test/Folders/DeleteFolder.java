@@ -13,7 +13,7 @@ public class DeleteFolder {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Folder folder = (Folder) session.getObjectByPath("/My_Folder-0-0");
+		Folder folder = (Folder) session.getObjectByPath("/Test/My_Folder-0-11");
 
 		Tool.printAndLog("Name Of the Folder : " + folder.getName());
 		Tool.printAndLog("Deleting the folder : " + folder.getName());

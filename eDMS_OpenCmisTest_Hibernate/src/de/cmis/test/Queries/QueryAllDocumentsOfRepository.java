@@ -1,13 +1,11 @@
 package de.cmis.test.Queries;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.QueryResult;
 import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.data.PropertyData;
-import org.apache.chemistry.opencmis.commons.impl.json.parser.JSONParseException;
 
 import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;

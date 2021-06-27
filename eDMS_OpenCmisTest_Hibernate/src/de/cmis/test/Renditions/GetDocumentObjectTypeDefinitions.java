@@ -7,6 +7,7 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.definitions.PropertyDefinition;
 
 import de.cmis.test.TestSetting;
+import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class GetDocumentObjectTypeDefinitions {
@@ -19,21 +20,21 @@ public class GetDocumentObjectTypeDefinitions {
 		Map<String, PropertyDefinition<?>> propDefinitions = objectType.getPropertyDefinitions();
 
 		for (String property : propDefinitions.keySet()) {
-			System.out.println("\n****************************************");
-			System.out.println(property);
-			System.out.println("****************************************");
+			Tool.printAndLog("\n****************************************");
+			Tool.printAndLog(property);
+			Tool.printAndLog("****************************************");
 
 			PropertyDefinition<?> propDefinition = propDefinitions.get(property);
 
-			System.out.println("Property Type : " + propDefinition.getPropertyType());
-			System.out.println("Inherited : " + propDefinition.isInherited());
-			System.out.println("Required : " + propDefinition.isRequired());
-			System.out.println("Cardinality : " + propDefinition.getCardinality());
-			System.out.println("Updatability : " + propDefinition.getUpdatability());
-			System.out.println("Choices : " + propDefinition.getChoices());
-			System.out.println("Open Choice : " + propDefinition.isOpenChoice());
-			System.out.println("Queryable : " + propDefinition.isQueryable());
-			System.out.println("Orderable : " + propDefinition.isOrderable());
+			Tool.printAndLog("Property Type : " + propDefinition.getPropertyType());
+			Tool.printAndLog("Inherited : " + propDefinition.isInherited());
+			Tool.printAndLog("Required : " + propDefinition.isRequired());
+			Tool.printAndLog("Cardinality : " + propDefinition.getCardinality());
+			Tool.printAndLog("Updatability : " + propDefinition.getUpdatability());
+			Tool.printAndLog("Choices : " + propDefinition.getChoices());
+			Tool.printAndLog("Open Choice : " + propDefinition.isOpenChoice());
+			Tool.printAndLog("Queryable : " + propDefinition.isQueryable());
+			Tool.printAndLog("Orderable : " + propDefinition.isOrderable());
 
 		}
 

@@ -19,7 +19,7 @@ public class UpdateContentOfDocument {
 	public static void go(TestSetting setting) throws IOException {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Document document = (Document) session.getObjectByPath("/07_S_Verweis.docx");
+		Document document = (Document) session.getObjectByPath("/Test/07_S_Verweis.docx");
 
 		Tool.printAndLog("Content stream length before updating : " + document.getContentStreamLength());
 

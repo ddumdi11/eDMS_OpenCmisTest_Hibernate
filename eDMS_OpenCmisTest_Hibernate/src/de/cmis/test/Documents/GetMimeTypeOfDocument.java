@@ -13,7 +13,7 @@ public class GetMimeTypeOfDocument {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Document document = (Document) session.getObjectByPath("/application.log");
+		Document document = (Document) session.getObjectByPath("/Test/sampleDoc.json");
 
 		ContentStream contentStream = document.getContentStream();
 

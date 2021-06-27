@@ -1,10 +1,7 @@
 package de.cmis.test.Queries;
 
-import java.io.IOException;
-
 import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.enums.CapabilityQuery;
-import org.apache.chemistry.opencmis.commons.impl.json.parser.JSONParseException;
 
 import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;

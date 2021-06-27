@@ -30,11 +30,11 @@ public class DeleteDocument {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Folder root = session.getRootFolder();
+		Folder root = (Folder) session.getObjectByPath("/Test");
 		String docName = "Hello.txt";
 		createEmptyDocInFolder(root, docName);
 
-		Document document = (Document) session.getObjectByPath("/Hello.txt");
+		Document document = (Document) session.getObjectByPath("/Test/Hello.txt");
 
 		Tool.printAndLog("Document Name : " + document.getName());
 

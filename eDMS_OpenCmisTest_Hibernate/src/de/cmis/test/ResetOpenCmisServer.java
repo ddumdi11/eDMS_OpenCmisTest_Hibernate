@@ -14,7 +14,6 @@ import org.apache.chemistry.opencmis.client.api.Folder;
 import org.apache.chemistry.opencmis.client.api.ItemIterable;
 import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
-import org.apache.chemistry.opencmis.commons.enums.Action;
 import org.apache.chemistry.opencmis.commons.enums.UnfileObject;
 
 import de.cmis.test.Session.SessionSingleton;
@@ -59,25 +58,42 @@ public class ResetOpenCmisServer {
 
 	}
 
+	private static void deleteTestFolder(Session session) {
+		// Den kompletten Test-Ordner-Inhalt löschen (falls schon vorhanden)
+		try {
+			Folder testFolder = (Folder) session.getObjectByPath("/Test");
+			ItemIterable<CmisObject> cmisObjects = testFolder.getChildren();
+			for (CmisObject cmisObject : cmisObjects) {
+				if (cmisObject instanceof Folder) {
+					Folder toDelete = (Folder) session.getObjectByPath(((Folder) cmisObject).getPath());
+					toDelete.deleteTree(true, UnfileObject.DELETE, true);
+				} else {
+					cmisObject.delete();
+				}
+			}
+			testFolder.deleteTree(true, null, false);
+			testFolder.refresh();
+			System.out.println("Ordner 'Test' wurde gelöscht.");
+		} catch (Exception e) {
+			System.out.println("Ordner 'Test' im Rootfolder nicht vorhanden oder lässt sich nicht löschen.");
+		}
+	}
+
+	private static void createTestFolder(Session session) throws IOException {
+		// Ordner-Struktur neu erzeugen
+		Folder rootFolder = session.getRootFolder();
+		Map<String, String> properties = new HashMap<>();
+		properties.put("cmis:objectTypeId", "cmis:folder");
+		properties.put("cmis:name", "Test");
+		Folder testFolder = rootFolder.createFolder(properties);
+		createDefaultFolderStructureInFolder(session, testFolder, 3, 0);
+	}
+
 	public static void go(TestSetting setting) throws IOException {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		// Den kompletten Root-Ordner-Inhalt löschen
-		Folder rootFolder = session.getRootFolder();
-
-		ItemIterable<CmisObject> cmisObjects = rootFolder.getChildren();
-
-		for (CmisObject cmisObject : cmisObjects) {
-			if (cmisObject instanceof Folder) {
-				Folder toDelete = (Folder) session.getObjectByPath(((Folder) cmisObject).getPath());
-				toDelete.deleteTree(true, UnfileObject.DELETE, true);
-			} else {
-				cmisObject.delete();
-			}
-		}
-
-		// Ordner-Struktur neu erzeugen
-		createDefaultFolderStructureInFolder(session, rootFolder, 3, 0);
+		deleteTestFolder(session);
+		createTestFolder(session);
 
 	}
 

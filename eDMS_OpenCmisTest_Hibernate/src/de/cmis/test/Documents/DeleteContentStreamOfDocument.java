@@ -28,6 +28,10 @@ public class DeleteContentStreamOfDocument {
 		ObjectFactoryImpl objectFactory = new ObjectFactoryImpl();
 		try (InputStream stream = new FileInputStream(file)) {
 			String mimetype = Files.probeContentType(file.toPath());
+			// Mimetype von .log wird offenbar nicht richtig erkannt
+						if (mimetype == null) {
+							mimetype = "application/log";
+						}
 			ContentStream contentStream = objectFactory.createContentStream(file.getName(), file.length(), mimetype,
 					stream);
 			document.setContentStream(contentStream, true, true);
@@ -72,7 +76,7 @@ public class DeleteContentStreamOfDocument {
 		properties.put("cmis:objectTypeId", "cmis:document");
 		properties.put("cmis:name", "sample.log");
 
-		Folder rootFolder = session.getRootFolder();
+		Folder rootFolder = (Folder) session.getObjectByPath("/Test");
 
 		Document document = rootFolder.createDocument(properties, null, null);
 

@@ -18,7 +18,7 @@ public class CreateUnfiledDocumentInRootFolder {
 
 		// Dokument löschen, falls vorhanden
 		try {
-			Document toDeleteDoc = (Document) session.getObjectByPath("/unfiledDocument.txt");
+			Document toDeleteDoc = (Document) session.getObjectByPath("unfiledDocument.txt");
 			Tool.printAndLog("Dokument vorhanden + wird gelöscht.");
 			toDeleteDoc.delete();
 			Tool.printAndLog("Dokument erfolgreich gelöscht.");

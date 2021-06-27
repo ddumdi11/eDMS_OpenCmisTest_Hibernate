@@ -9,20 +9,19 @@ import de.cmis.test.ACL.GetAclsAssociatedWithObject;
 import de.cmis.test.ACL.MapAclsToAllowableActions;
 import de.cmis.test.Documents.Append2ContentStreamOfDocument;
 import de.cmis.test.Documents.CheckUnfilingSupport;
-import de.cmis.test.Documents.CheckVersioning;
-import de.cmis.test.Documents.ContentStreamCRUD;
-import de.cmis.test.Documents.CreateDocumentWithContentInRootFolder;
-import de.cmis.test.Documents.CreateEmptyDocumentInRootFolder;
+import de.cmis.test.Documents.ContentStreamCRUDCapabilities;
+import de.cmis.test.Documents.CreateDocumentWithContentInTestFolder;
+import de.cmis.test.Documents.CreateEmptyDocumentInTestFolder;
 import de.cmis.test.Documents.CreateUnfiledDocumentInRootFolder;
 import de.cmis.test.Documents.DeleteContentStreamOfDocument;
 import de.cmis.test.Documents.DeleteDocument;
+import de.cmis.test.Documents.GetContentStreamOfDocument;
 import de.cmis.test.Documents.GetContentsOfFirstDocumentInRootFolder;
 import de.cmis.test.Documents.GetImportantPropertyValuesFromFirstDocumentInRootFolder;
 import de.cmis.test.Documents.GetMimeTypeOfDocument;
 import de.cmis.test.Documents.GetPropertiesOfFirstDocumentInRootFolder;
-import de.cmis.test.Documents.RenameDocument;
+import de.cmis.test.Documents.RenameDocumentInTestFolder;
 import de.cmis.test.Documents.SetContentStreamOfDocument;
-import de.cmis.test.Documents.GetContentStreamOfDocument;
 import de.cmis.test.Documents.UpdateContentOfDocument;
 import de.cmis.test.Folders.CreateFolder;
 import de.cmis.test.Folders.DeleteFolder;
@@ -44,7 +43,6 @@ import de.cmis.test.ItemsRelationshipsPolicies.CheckItemTypeSupport;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckPolicyControllabilityOfObject;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckPolicySupport;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckRelationshipSupport;
-import de.cmis.test.ItemsRelationshipsPolicies.CreateFiledPolicy;
 import de.cmis.test.ItemsRelationshipsPolicies.CreateItemCustomType;
 import de.cmis.test.ItemsRelationshipsPolicies.CreateItemFiled;
 import de.cmis.test.ItemsRelationshipsPolicies.CreateItemUnfiled;
@@ -120,11 +118,13 @@ public class AllTestsMain {
 		GetRootFolderId.go(setting);
 		GetAclOfRootFolder.go(setting);
 		GetAllPropertyTypes.go(setting);
+		//System.exit(0);
 
 		// Eigenschaften (Properties) Tests
 		GetPropertiesOfRootFolder.go(setting);
 		GetPropertiesOfFolderType.go(setting);
 		GetBasicRepositoryInfo.go(setting);
+		//System.exit(0);
 
 		// Order (Folder) Tests
 		TraversThroughRootFolderHirarchy.go(); // Ohne Setting
@@ -139,21 +139,21 @@ public class AllTestsMain {
 		GetPropertiesOfFirstDocumentInRootFolder.go(); // Ohne Setting
 		GetContentsOfFirstDocumentInRootFolder.go(); // Ohne Setting
 		GetImportantPropertyValuesFromFirstDocumentInRootFolder.go(setting);
-		CreateEmptyDocumentInRootFolder.go(setting);
-		CreateDocumentWithContentInRootFolder.go(setting);
+		CreateEmptyDocumentInTestFolder.go(setting);
+		CreateDocumentWithContentInTestFolder.go(setting);
 		CheckUnfilingSupport.go(setting);
 		CreateUnfiledDocumentInRootFolder.go(setting);
-		RenameDocument.go(setting);
+		RenameDocumentInTestFolder.go(setting);
 		UpdateContentOfDocument.go(setting);
-		CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
+		//CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
 		DeleteDocument.go(setting);
-		ContentStreamCRUD.go(setting);
+		ContentStreamCRUDCapabilities.go(setting);
 		SetContentStreamOfDocument.go(setting);
 		GetContentStreamOfDocument.go(setting);
 		Append2ContentStreamOfDocument.go(setting);
 		DeleteContentStreamOfDocument.go(setting);
 		GetMimeTypeOfDocument.go(setting);
-		System.exit(0);
+		//System.exit(0);
 
 		// Wiedergaben (Renditions) Tests
 		GetRenditionAttributes1.go(setting);
@@ -162,9 +162,11 @@ public class AllTestsMain {
 		AccessContentAssociatedWithRendition2.go(setting);
 		AccessContentAssociatedWithRendition3.go(setting);
 		GetDocumentObjectTypeDefinitions.go(setting);
+		System.exit(0);
 
 		// Artikel/Gegenstände/Positionen (Items), Beziehungen (Relationships),
 		// Richtlinien (Policies)
+		ResetOpenCmisServer.go(setting);
 		CheckItemTypeSupport.go(setting);
 		CreateItemUnfiled.go(setting);
 		CreateItemFiled.go(setting);
@@ -176,7 +178,7 @@ public class AllTestsMain {
 		CheckPolicySupport.go(setting);
 		CheckPolicyControllabilityOfObject.go(setting);
 		CreateUnfiledPolicy.go(setting);
-		CreateFiledPolicy.go(setting);
+		//CreateFiledPolicy.go(setting);
 		ApplyPolicyToObject.go(setting);
 		GetPoliciesAppliedToObject.go(setting);
 

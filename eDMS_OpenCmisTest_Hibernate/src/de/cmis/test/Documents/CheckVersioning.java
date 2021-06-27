@@ -21,7 +21,7 @@ public class CheckVersioning {
 
 	private static String inputFile1 = "./src/de/cmis/test/Files/07_S_Verweis.docx";
 	private static String inputFile2 = "./src/de/cmis/test/Files/07_S_Verweis.docx";
-	private static String documentName = "sample1.txt";
+	private static String documentName = "sample2.txt";
 
 	private static Document createDocument(Session session) throws IOException {
 		File inputFile = new File(inputFile1);
