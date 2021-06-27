@@ -17,8 +17,8 @@ import de.cmis.test.Session.SessionSingleton;
 public class SetSecondaryType2 {
 
 	private static void printDocument(Document document) {
-		String contactUs = document.getPropertyValue("abc:contactUs");
-		String help = document.getPropertyValue("abc:help");
+		String contactUs = document.getPropertyValue("cbc:contactUs");
+		String help = document.getPropertyValue("cbc:help");
 
 		Tool.printAndLog("name : " + document.getName());
 		Tool.printAndLog("id : " + document.getId());
@@ -29,13 +29,13 @@ public class SetSecondaryType2 {
 
 		Tool.printAndLog("contact us : " + contactUs);
 		Tool.printAndLog("Help : " + help);
-		Tool.printAndLog("confidentialValue : " + document.getPropertyValue("abc:confidentialLevel"));
+		Tool.printAndLog("confidentialValue : " + document.getPropertyValue("dbc:confidentialLevel"));
 	}
 
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		CmisObject cmisObject = session.getObjectByPath("/emptyDocument.txt");
+		CmisObject cmisObject = session.getObjectByPath("/Test/emptyDocument2.txt");
 
 		/* Get current secondary types */
 		List<String> secondaryTypes = cmisObject.getPropertyValue(PropertyIds.SECONDARY_OBJECT_TYPE_IDS);
@@ -46,11 +46,11 @@ public class SetSecondaryType2 {
 		Map<String, Object> properties = new HashMap<String, Object>();
 
 		/* Add the new secondary type */
-		secondaryTypes.add("abc:confidentialDocs");
+		secondaryTypes.add("dbc:confidentialDocs");
 		properties.put(PropertyIds.SECONDARY_OBJECT_TYPE_IDS, secondaryTypes);
 
 		/* set secondary type property */
-		properties.put("abc:confidentialLevel", 5);
+		properties.put("dbc:confidentialLevel", 5);
 
 		/* update properties */
 		cmisObject.updateProperties(properties);

@@ -17,8 +17,8 @@ import de.cmis.test.Session.SessionSingleton;
 public class SetSecondaryType {
 
 	private static void printDocument(Document document) {
-		String contactUs = document.getPropertyValue("abc:contactUs");
-		String help = document.getPropertyValue("abc:help");
+		String contactUs = document.getPropertyValue("cbc:contactUs");
+		String help = document.getPropertyValue("cbc:help");
 
 		Tool.printAndLog("name : " + document.getName());
 		Tool.printAndLog("id : " + document.getId());
@@ -34,18 +34,18 @@ public class SetSecondaryType {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Folder rootFolder = session.getRootFolder();
+		Folder rootFolder = (Folder) session.getObjectByPath("/Test");
 
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("cmis:objectTypeId", "cmis:document");
-		properties.put("cmis:name", "emptyDocument.txt");
+		properties.put("cmis:name", "emptyDocument2.txt");
 
 		List<String> secondaryTypes = new ArrayList<String>();
-		secondaryTypes.add("abc:secondaryType");
+		secondaryTypes.add("cbc:secondaryType");
 		properties.put(PropertyIds.SECONDARY_OBJECT_TYPE_IDS, secondaryTypes);
 
-		properties.put("abc:contactUs", "https://self-learning-java-tutorial.blogspot.com");
-		properties.put("abc:help", "Java Tutorial blogspot");
+		properties.put("cbc:contactUs", "https://self-learning-java-tutorial.blogspot.com");
+		properties.put("cbc:help", "Java Tutorial blogspot");
 
 		Document document = rootFolder.createDocument(properties, null, null);
 		printDocument(document);

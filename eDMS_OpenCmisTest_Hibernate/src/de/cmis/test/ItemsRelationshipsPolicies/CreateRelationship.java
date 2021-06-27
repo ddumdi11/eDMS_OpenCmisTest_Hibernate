@@ -46,8 +46,8 @@ public class CreateRelationship {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		CmisObject folder1 = session.getObjectByPath("/My_Folder-0-0");
-		CmisObject folder2 = session.getObjectByPath("/My_Folder-0-1");
+		CmisObject folder1 = session.getObjectByPath("/Test/My_Folder-0-0");
+		CmisObject folder2 = session.getObjectByPath("/Test/My_Folder-0-1");
 
 		ObjectId relationShipId = createRelationShip(session, folder1.getId(), folder2.getId());
 

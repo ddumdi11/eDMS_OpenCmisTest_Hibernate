@@ -19,7 +19,7 @@ public class CreateUnfiledPolicy {
 
 		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put(PropertyIds.NAME, "a new unfiled policy");
-		properties.put(PropertyIds.OBJECT_TYPE_ID, "AuditPolicy");
+		properties.put(PropertyIds.OBJECT_TYPE_ID, "AuditPolicy"); // Weil die Erstellung des "abc:policy"-Types nicht klappt
 		properties.put(PropertyIds.POLICY_TEXT, "my un policy description");
 
 		ObjectId policyId = session.createPolicy(properties, null);

@@ -31,15 +31,15 @@ public class GetPoliciesAppliedToObject {
 
 		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put(PropertyIds.NAME, "a new filed policy");
-		properties.put(PropertyIds.OBJECT_TYPE_ID, "AuditPolicy");
+		properties.put(PropertyIds.OBJECT_TYPE_ID, "AuditPolicy"); // Weil die Erstellung des "abc:policy"-Types nicht klappt
 		properties.put(PropertyIds.POLICY_TEXT, "my policy description");
 
 		ObjectId policyId = session.createPolicy(properties, null);
 
 		Policy policy = (Policy) session.getObject(policyId);
 
-		Tool.printAndLog("Applying policy to the folder : '/My_Folder-0-0'");
-		CmisObject cmisObject = session.getObjectByPath("/My_Folder-0-0");
+		Tool.printAndLog("Applying policy to the folder : '/Test/My_Folder-0-0'");
+		CmisObject cmisObject = session.getObjectByPath("/Test/My_Folder-0-0");
 		session.applyPolicy(new ObjectIdImpl(cmisObject.getId()), new ObjectIdImpl(policy.getId()));
 
 		List<Policy> policies = cmisObject.getPolicies();

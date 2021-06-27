@@ -43,6 +43,7 @@ import de.cmis.test.ItemsRelationshipsPolicies.CheckItemTypeSupport;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckPolicyControllabilityOfObject;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckPolicySupport;
 import de.cmis.test.ItemsRelationshipsPolicies.CheckRelationshipSupport;
+import de.cmis.test.ItemsRelationshipsPolicies.CreateFiledPolicy;
 import de.cmis.test.ItemsRelationshipsPolicies.CreateItemCustomType;
 import de.cmis.test.ItemsRelationshipsPolicies.CreateItemFiled;
 import de.cmis.test.ItemsRelationshipsPolicies.CreateItemUnfiled;
@@ -162,11 +163,10 @@ public class AllTestsMain {
 		AccessContentAssociatedWithRendition2.go(setting);
 		AccessContentAssociatedWithRendition3.go(setting);
 		GetDocumentObjectTypeDefinitions.go(setting);
-		System.exit(0);
+		//System.exit(0);
 
 		// Artikel/Gegenstände/Positionen (Items), Beziehungen (Relationships),
-		// Richtlinien (Policies)
-		ResetOpenCmisServer.go(setting);
+		// Richtlinien (Policies)		
 		CheckItemTypeSupport.go(setting);
 		CreateItemUnfiled.go(setting);
 		CreateItemFiled.go(setting);
@@ -178,14 +178,16 @@ public class AllTestsMain {
 		CheckPolicySupport.go(setting);
 		CheckPolicyControllabilityOfObject.go(setting);
 		CreateUnfiledPolicy.go(setting);
-		//CreateFiledPolicy.go(setting);
+		CreateFiledPolicy.go(setting);
 		ApplyPolicyToObject.go(setting);
 		GetPoliciesAppliedToObject.go(setting);
+		//System.exit(0);
 
 		// Sekundäre Typen (Secondary Types) Tests
 		SetSecondaryType.go(setting);
 		SetSecondaryType2.go(setting);
 		RemoveSecondaryType.go(setting);
+		System.exit(0);
 
 		// Metadaten (Metadata) und Typen (Types)
 		GetMetadata1.go(setting);

@@ -15,7 +15,7 @@ public class CheckIfRelationshipExists {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		CmisObject cmisObject = session.getObjectByPath("/My_Document-0-0");
+		CmisObject cmisObject = session.getObjectByPath("/Test/My_Document-0-0");
 
 		List<Relationship> relationShips = cmisObject.getRelationships();
 		if (relationShips == null) {

@@ -13,7 +13,7 @@ public class CheckPolicyControllabilityOfObject {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		// CmisObject cmisObject = session.getRootFolder();
-		CmisObject cmisObject = session.getObjectByPath("/My_Document-0-0");
+		CmisObject cmisObject = session.getObjectByPath("/Test/My_Document-0-0");
 		Boolean controllablePolicy = cmisObject.getType().isControllablePolicy();
 
 		if (controllablePolicy == null) {

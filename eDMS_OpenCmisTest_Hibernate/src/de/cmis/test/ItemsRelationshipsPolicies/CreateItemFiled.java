@@ -17,7 +17,7 @@ public class CreateItemFiled {
 	public static void go(TestSetting setting) {
 		Session session = SessionSingleton.getInstance().getSession(setting);
 
-		Folder folder = (Folder) session.getObjectByPath("/My_Folder-0-0");
+		Folder folder = (Folder) session.getObjectByPath("/Test/My_Folder-0-0");
 
 		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put(PropertyIds.NAME, "My Demo filed item");
