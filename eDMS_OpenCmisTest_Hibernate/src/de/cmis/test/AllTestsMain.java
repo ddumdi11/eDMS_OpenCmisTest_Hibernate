@@ -9,7 +9,9 @@ import de.cmis.test.ACL.CheckAclSupport;
 import de.cmis.test.ACL.GetAclCapabilities;
 import de.cmis.test.ACL.GetAclsAssociatedWithObject;
 import de.cmis.test.ACL.MapAclsToAllowableActions;
-import de.cmis.test.ChangeLogSupport.CheckChangeLogSupport;
+import de.cmis.test.ChangeLogSupport.CheckChangeLogCapabilities;
+import de.cmis.test.ChangeLogSupport.CheckChangeLogChangeEvents;
+import de.cmis.test.ChangeLogSupport.CheckChangeLogSupportGetChangesIncomplete;
 import de.cmis.test.Documents.Append2ContentStreamOfDocument;
 import de.cmis.test.Documents.CheckUnfilingSupport;
 import de.cmis.test.Documents.ContentStreamCRUDCapabilities;
@@ -135,9 +137,22 @@ public class AllTestsMain {
 		testSession.openSession();
 
 		// Bereinigen der Server um durch Testdurchläufe angelegte Objekte
-		//ResetAlfresco.go(setting.getServerDefaultSetting("Alfresco"));
+		// ResetAlfresco.go(setting.getServerDefaultSetting("Alfresco"));
 		ResetOpenCmisServer.go(setting);
-		//System.exit(0);
+		// System.exit(0);
+
+		// Einführung
+		GetSupportedCmisVersionOfRepository.go(setting);
+		GetObjectIdOfRootFolder.go(setting);
+		GetObjectTypes.go(setting);
+		GetAllTypeChildren.go(setting);
+		GetAllTypeChildrenOfType.go(setting);
+		GetTypeDescendantsOfType.go(setting);
+		GetTypeDefinitionOfType.go(setting);
+		GetPropertyDefinitionsOfType.go(setting);
+		GetAllBaseTypesOfRepository.go(setting);
+		GetObjectTypesHirarchy.go(setting);
+		// System.exit(0);
 
 		// Allgemeine Tests
 		// Berücksichtigt nicht die Testeinstellung
@@ -149,13 +164,13 @@ public class AllTestsMain {
 		GetRootFolderId.go(setting);
 		GetAclOfRootFolder.go(setting);
 		GetAllPropertyTypes.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Eigenschaften (Properties) Tests
 		GetPropertiesOfRootFolder.go(setting);
 		GetPropertiesOfFolderType.go(setting);
 		GetBasicRepositoryInfo.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Order (Folder) Tests
 		TraversThroughRootFolderHirarchy.go(); // Ohne Setting
@@ -164,7 +179,7 @@ public class AllTestsMain {
 		GetFolderHirarchyFromRootFolderOfRepository.go(setting);
 		GetFolderByPath.go(setting);
 		GetParentsOfFolder.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Dokument Tests
 		GetPropertiesOfFirstDocumentInRootFolder.go(); // Ohne Setting
@@ -176,7 +191,7 @@ public class AllTestsMain {
 		CreateUnfiledDocumentInRootFolder.go(setting);
 		RenameDocumentInTestFolder.go(setting);
 		UpdateContentOfDocument.go(setting);
-		//CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
+		// CheckVersioning.go(setting.getServerDefaultSetting("Alfresco"));
 		DeleteDocument.go(setting);
 		ContentStreamCRUDCapabilities.go(setting);
 		SetContentStreamOfDocument.go(setting);
@@ -184,7 +199,7 @@ public class AllTestsMain {
 		Append2ContentStreamOfDocument.go(setting);
 		DeleteContentStreamOfDocument.go(setting);
 		GetMimeTypeOfDocument.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Wiedergaben (Renditions) Tests
 		GetRenditionAttributes1.go(setting);
@@ -193,10 +208,10 @@ public class AllTestsMain {
 		AccessContentAssociatedWithRendition2.go(setting);
 		AccessContentAssociatedWithRendition3.go(setting);
 		GetDocumentObjectTypeDefinitions.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Artikel/Gegenstände/Positionen (Items), Beziehungen (Relationships),
-		// Richtlinien (Policies)		
+		// Richtlinien (Policies)
 		CheckItemTypeSupport.go(setting);
 		CreateItemUnfiled.go(setting);
 		CreateItemFiled.go(setting);
@@ -211,13 +226,13 @@ public class AllTestsMain {
 		CreateFiledPolicy.go(setting);
 		ApplyPolicyToObject.go(setting);
 		GetPoliciesAppliedToObject.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Sekundäre Typen (Secondary Types) Tests
 		SetSecondaryType.go(setting);
 		SetSecondaryType2.go(setting);
 		RemoveSecondaryType.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Metadaten (Metadata) und Typen (Types)
 		GetMetadata1.go(setting);
@@ -228,7 +243,7 @@ public class AllTestsMain {
 		GetTypeMutabilitySettings.go(setting);
 		GetTypeSettableAttributes.go(setting);
 		GetCreatablePropertyTypes.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Zugriffskontrolle (ACL - AccessControl)
 		CheckAclSupport.go(setting);
@@ -236,14 +251,14 @@ public class AllTestsMain {
 		GetAclsAssociatedWithObject.go(setting);
 		MapAclsToAllowableActions.go(setting);
 		AddAceToAclOfObject.go(setting);
-		//System.exit(0);
+		// System.exit(0);
 
 		// Abfragen (Queries)
 		GetQuerySupport.go(setting);
 		QueryAllDocumentsOfRepository.go(setting);
 		ExecuteQueriesFromList.go(setting);
-		//System.exit(0);
-		
+		// System.exit(0);
+
 		// Repository-Fähigkeiten/Funktionen (Repository Capabilities)
 		// Navigationsfähigkeiten/-funktionen (Navigation Capabilities)
 		CheckGetDescendantsSupport.go(setting);
@@ -251,7 +266,7 @@ public class AllTestsMain {
 		CheckOrderByCapabilitySupport.go(setting);
 		// Objektfähigkeiten/-funktionen
 		CheckContentStreamUpdationCapability.go(setting);
-		CheckChangeLogSupport.go(setting);
+		CheckChangeLogSupportGetChangesIncomplete.go(setting);
 		CheckRenditionSupport.go(setting);
 		// Ablagefähigkeiten/-funktionen
 		CheckMultiFilingCapability.go(setting);
@@ -270,23 +285,20 @@ public class AllTestsMain {
 		// ACL (AccessControlList) Fähigkeiten/Funktionen
 		CheckAclCapabilities.go(setting);
 		// Allgemein
-		GetVendorNameProductNameProductVersionOfRepository.go(setting);		
-		//System.exit(0);
+		GetVendorNameProductNameProductVersionOfRepository.go(setting);
+		// System.exit(0);
 		
-		// Einführung
-		GetSupportedCmisVersionOfRepository.go(setting);
-		GetObjectIdOfRootFolder.go(setting);
-		GetObjectTypes.go(setting);
-		GetAllTypeChildren.go(setting);
-		GetAllTypeChildrenOfType.go(setting);
-		GetTypeDescendantsOfType.go(setting);
-		GetTypeDefinitionOfType.go(setting);
-		GetPropertyDefinitionsOfType.go(setting);
-		GetAllBaseTypesOfRepository.go(setting);
-		GetObjectTypesHirarchy.go(setting);
+		// Unterstützung für Änderungsprotokolle (ChangeLog Support)
+		CheckChangeLogSupportGetChangesIncomplete.go(setting);
+		CheckChangeLogCapabilities.go(setting);
+		CheckChangeLogChangeEvents.go(setting);		
+		System.exit(0);
+
+		// Mit Erweiterungen arbeiten (Working with Extensions)
+		
 		System.exit(0);
 		
-
+		
 		// Hibernate Session für Logging schließen
 		testSession.closeSession();
 

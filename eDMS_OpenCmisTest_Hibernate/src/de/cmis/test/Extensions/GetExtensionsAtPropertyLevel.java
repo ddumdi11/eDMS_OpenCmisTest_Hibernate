@@ -7,6 +7,7 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.data.CmisExtensionElement;
 import org.apache.chemistry.opencmis.commons.enums.ExtensionLevel;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
@@ -28,8 +29,8 @@ public class GetExtensionsAtPropertyLevel {
 		}
 	}
 
-	public static void main(String args[]) {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		// CmisObject cmisObj = session.getObject("L0hlbGxvLnR4dA==");
 		CmisObject cmisObj = session.getObject("134");

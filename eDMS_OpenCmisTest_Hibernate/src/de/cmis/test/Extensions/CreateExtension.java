@@ -28,7 +28,7 @@ public class CreateExtension {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void go() {
 		CmisExtensionElement leafExtension1 = new CmisExtensionElementImpl("", "confidentialLevel", null,
 				"confidential");
 		CmisExtensionElement leafExtension2 = new CmisExtensionElementImpl("", "rootFolderId", null, "folder_1234");
