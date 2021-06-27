@@ -72,7 +72,7 @@ public class AddAceToAclOfObject {
 		session.setDefaultContext(getDefaultContext());
 
 		/* Get the object by path */
-		CmisObject cmisObject = session.getObjectByPath("/My_Folder-0-0");
+		CmisObject cmisObject = session.getObjectByPath("/Test/My_Folder-0-0");
 
 		/* Get ACL associated with cmis object */
 		Acl acl = cmisObject.getAcl();

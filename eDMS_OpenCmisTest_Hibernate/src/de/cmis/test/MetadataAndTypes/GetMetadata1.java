@@ -12,7 +12,7 @@ import de.cmis.test.Session.SessionSingleton;
 
 public class GetMetadata1 {
 
-	public static void printType(Tree<ObjectType> types, String space) {
+	private static void printType(Tree<ObjectType> types, String space) {
 
 		ObjectType objType = types.getItem();
 

@@ -78,7 +78,10 @@ public class GetAclsAssociatedWithObject {
 			return;
 		}
 
-		Acl acl = session.getObject("117").getAcl();
+		String objectId = "117";
+		Acl acl = session.getObject(objectId).getAcl();
+		Tool.printAndLog("Objekt mit der Id " + objectId + "\nhat den Namen" + session.getObject(objectId)
+				+ "\n und befindet sich im Pfad " + session.getObject(objectId).getProperties().get(0));
 
 		printACL(acl);
 

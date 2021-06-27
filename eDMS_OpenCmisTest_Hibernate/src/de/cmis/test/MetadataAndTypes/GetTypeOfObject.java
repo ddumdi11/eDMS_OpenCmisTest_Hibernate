@@ -10,7 +10,7 @@ import de.cmis.test.Session.SessionSingleton;
 
 public class GetTypeOfObject {
 
-	public static void printTypeInformation(ObjectType objectType) {
+	private static void printTypeInformation(ObjectType objectType) {
 
 		String description = objectType.getDescription();
 		String displayName = objectType.getDisplayName();

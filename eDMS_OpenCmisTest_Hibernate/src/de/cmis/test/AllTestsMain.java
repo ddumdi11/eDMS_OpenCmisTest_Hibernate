@@ -7,6 +7,7 @@ import de.cmis.test.ACL.CheckAclSupport;
 import de.cmis.test.ACL.GetAclCapabilities;
 import de.cmis.test.ACL.GetAclsAssociatedWithObject;
 import de.cmis.test.ACL.MapAclsToAllowableActions;
+import de.cmis.test.ChangeLogSupport.CheckChangeLogSupport;
 import de.cmis.test.Documents.Append2ContentStreamOfDocument;
 import de.cmis.test.Documents.CheckUnfilingSupport;
 import de.cmis.test.Documents.ContentStreamCRUDCapabilities;
@@ -70,6 +71,23 @@ import de.cmis.test.Renditions.AccessContentAssociatedWithRendition3;
 import de.cmis.test.Renditions.GetDocumentObjectTypeDefinitions;
 import de.cmis.test.Renditions.GetRenditionAttributes1;
 import de.cmis.test.Renditions.GetRenditionAttributes2;
+import de.cmis.test.RepositoryCapabilities.CanSearchAllVersionsOfDocument;
+import de.cmis.test.RepositoryCapabilities.CheckAclCapabilities;
+import de.cmis.test.RepositoryCapabilities.CheckAllowablePropertyTypesWhileCreationOrUpdatingObjectTypeDefinitions;
+import de.cmis.test.RepositoryCapabilities.CheckContentStreamUpdationCapability;
+import de.cmis.test.RepositoryCapabilities.CheckGetDescendantsSupport;
+import de.cmis.test.RepositoryCapabilities.CheckGetFolderTreeSupport;
+import de.cmis.test.RepositoryCapabilities.CheckMultiFilingCapability;
+import de.cmis.test.RepositoryCapabilities.CheckOrderByCapabilitySupport;
+import de.cmis.test.RepositoryCapabilities.CheckRenditionSupport;
+import de.cmis.test.RepositoryCapabilities.CheckSettableObjectTypeAttributesWhileCreationNewObjectType;
+import de.cmis.test.RepositoryCapabilities.CheckUnfilingCapability;
+import de.cmis.test.RepositoryCapabilities.CheckVersioningCapabilities;
+import de.cmis.test.RepositoryCapabilities.GetQueryCapabilitiesOfRepository;
+import de.cmis.test.RepositoryCapabilities.GetQueryJoiningCapabilities;
+import de.cmis.test.RepositoryCapabilities.GetVendorNameProductNameProductVersionOfRepository;
+import de.cmis.test.RepositoryCapabilities.IsPrivateWorkingCopySearchable;
+import de.cmis.test.RepositoryCapabilities.IsPrivateWorkingCopyUpdatable;
 import de.cmis.test.SecondaryTypes.RemoveSecondaryType;
 import de.cmis.test.SecondaryTypes.SetSecondaryType;
 import de.cmis.test.SecondaryTypes.SetSecondaryType2;
@@ -187,7 +205,7 @@ public class AllTestsMain {
 		SetSecondaryType.go(setting);
 		SetSecondaryType2.go(setting);
 		RemoveSecondaryType.go(setting);
-		System.exit(0);
+		//System.exit(0);
 
 		// Metadaten (Metadata) und Typen (Types)
 		GetMetadata1.go(setting);
@@ -198,6 +216,7 @@ public class AllTestsMain {
 		GetTypeMutabilitySettings.go(setting);
 		GetTypeSettableAttributes.go(setting);
 		GetCreatablePropertyTypes.go(setting);
+		//System.exit(0);
 
 		// Zugriffskontrolle (ACL - AccessControl)
 		CheckAclSupport.go(setting);
@@ -205,11 +224,45 @@ public class AllTestsMain {
 		GetAclsAssociatedWithObject.go(setting);
 		MapAclsToAllowableActions.go(setting);
 		AddAceToAclOfObject.go(setting);
+		//System.exit(0);
 
 		// Abfragen (Queries)
 		GetQuerySupport.go(setting);
 		QueryAllDocumentsOfRepository.go(setting);
 		ExecuteQueriesFromList.go(setting);
+		//System.exit(0);
+		
+		// Repository-Fähigkeiten/Funktionen (Repository Capabilities)
+		// Navigationsfähigkeiten/-funktionen (Navigation Capabilities)
+		CheckGetDescendantsSupport.go(setting);
+		CheckGetFolderTreeSupport.go(setting);
+		CheckOrderByCapabilitySupport.go(setting);
+		// Objektfähigkeiten/-funktionen
+		CheckContentStreamUpdationCapability.go(setting);
+		CheckChangeLogSupport.go(setting);
+		CheckRenditionSupport.go(setting);
+		// Ablagefähigkeiten/-funktionen
+		CheckMultiFilingCapability.go(setting);
+		CheckUnfilingCapability.go(setting);
+		// Versionierungsfähigkeiten/-funktionen
+		CheckVersioningCapabilities.go(setting);
+		IsPrivateWorkingCopyUpdatable.go(setting);
+		IsPrivateWorkingCopySearchable.go(setting);
+		CanSearchAllVersionsOfDocument.go(setting);
+		// Abfragefähigkeiten/-funktionen
+		GetQueryCapabilitiesOfRepository.go(setting);
+		GetQueryJoiningCapabilities.go(setting);
+		// Typfähigkeiten/-funktionen
+		CheckAllowablePropertyTypesWhileCreationOrUpdatingObjectTypeDefinitions.go(setting);
+		CheckSettableObjectTypeAttributesWhileCreationNewObjectType.go(setting);
+		// ACL (AccessControlList) Fähigkeiten/Funktionen
+		CheckAclCapabilities.go(setting);
+		// Allgemein
+		GetVendorNameProductNameProductVersionOfRepository.go(setting);
+				
+		
+		System.exit(0);
+		
 
 		// Hibernate Session für Logging schließen
 		testSession.closeSession();

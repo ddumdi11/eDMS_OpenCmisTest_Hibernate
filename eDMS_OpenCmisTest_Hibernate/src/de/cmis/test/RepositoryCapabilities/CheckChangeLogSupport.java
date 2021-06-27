@@ -4,17 +4,24 @@ import org.apache.chemistry.opencmis.client.api.Session;
 import org.apache.chemistry.opencmis.commons.data.RepositoryInfo;
 import org.apache.chemistry.opencmis.commons.enums.CapabilityChanges;
 
+import de.cmis.test.TestSetting;
 import de.cmis.test.Tool;
 import de.cmis.test.Session.SessionSingleton;
 
 public class CheckChangeLogSupport {
 
-	public static void main(String args[]) {
-		Session session = SessionSingleton.getInstance().getSession("OpenCmisServer", "atom11");
+	public static void go(TestSetting setting) {
+		Session session = SessionSingleton.getInstance().getSession(setting);
 
 		RepositoryInfo repoInfo = session.getRepositoryInfo();
 
-		CapabilityChanges capabilityChanges = repoInfo.getCapabilities().getChangesCapability();
+		CapabilityChanges capabilityChanges = null;
+		try {
+			capabilityChanges = repoInfo.getCapabilities().getChangesCapability();
+		} catch (Exception e) {
+			Tool.printAndLog("Fehler beim Holen der 'repoInfo.get.Capabilities.getChangesCapability'.");
+		}
+		
 
 		if (capabilityChanges == null) {
 			Tool.printAndLog("Repository is not providing this value");
@@ -28,6 +35,8 @@ public class CheckChangeLogSupport {
 		} else if (capabilityChanges == CapabilityChanges.ALL) {
 			Tool.printAndLog(
 					"The change log can return the object ids for changed objects in the repository and more information about the actual change.");
+		} else {
+			Tool.printAndLog("Keine der Auswahlmöglichkeiten vorhanden.");
 		}
 	}
 

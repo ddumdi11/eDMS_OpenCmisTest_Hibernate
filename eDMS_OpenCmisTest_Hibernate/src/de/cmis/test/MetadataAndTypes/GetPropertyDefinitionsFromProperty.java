@@ -14,7 +14,7 @@ import de.cmis.test.Session.SessionSingleton;
 
 public class GetPropertyDefinitionsFromProperty {
 
-	public static void printPropertyDefinitions(Map<String, PropertyDefinition<?>> propertyDefinitions) {
+	private static void printPropertyDefinitions(Map<String, PropertyDefinition<?>> propertyDefinitions) {
 
 		for (String key : propertyDefinitions.keySet()) {
 			Tool.printAndLog("Property definitions for the property : " + key);
