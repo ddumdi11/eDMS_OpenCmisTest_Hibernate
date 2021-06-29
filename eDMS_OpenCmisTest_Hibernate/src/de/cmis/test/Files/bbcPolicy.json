@@ -1,0 +1,52 @@
+{
+    "baseId": "cmis:policy",
+    "controllableACL": true,
+    "controllablePolicy": true,
+    "creatable": true,
+    "description": "Builtin InMemory type definition bbc:policy",
+    "displayName": "bbc organization Policy",
+    "fileable": false,
+    "fulltextIndexed": false,
+    "id": "bbc:policy",
+    "includedInSupertypeQuery": true,
+    "localName": "bbc:policy",
+    "localNamespace": "http://apache.org",
+    "parentId": "AuditPolicy",
+    "propertyDefinitions": {
+        "bbc:namespace": {
+            "cardinality": "single",
+            "description": "name space",
+            "displayName": "Name",
+            "id": "bbc:namespace",
+            "inherited": false,
+            "localName": "bbc:namespace",
+            "orderable": true,
+            "propertyType": "string",
+            "queryName": "bbc:namespace",
+            "queryable": true,
+            "required": true,
+            "updatability": "readwrite"
+        },
+        "bbc:typeOfPolicy": {
+            "cardinality": "single",
+            "description": "type of the policy",
+            "displayName": "Type of policy",
+            "id": "bbc:typeOfPolicy",
+            "inherited": false,
+            "localName": "bbc:typeOfPolicy",
+            "orderable": true,
+            "propertyType": "string",
+            "queryName": "bbc:typeOfPolicy",
+            "queryable": true,
+            "required": true,
+            "updatability": "readwrite"
+        }
+    },
+    "queryName": "bbc:policy",
+    "queryable": true,
+    "typeMutability": {
+        "create": true,
+        "delete": true,
+        "update": true
+    }
+}

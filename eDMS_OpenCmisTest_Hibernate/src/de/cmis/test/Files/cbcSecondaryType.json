@@ -1,0 +1,54 @@
+{
+    "baseId": "cmis:secondary",
+    "controllableACL": false,
+    "controllablePolicy": false,
+    "creatable": false,
+    "description": "Builtin InMemory type definition abc:secondaryType",
+    "displayName": "cbc:secondaryType",
+    "fileable": false,
+    "fulltextIndexed": false,
+    "id": "cbc:secondaryType",
+    "includedInSupertypeQuery": true,
+    "localName": "cbc:secondaryType",
+    "localNamespace": "http://apache.org",
+    "parentId": "cmis:secondary",
+    "propertyDefinitions": {
+        "cbc:contactUs": {
+            "cardinality": "single",
+            "description": "Contact us for any queries",
+            "displayName": "Secondary String Property",
+            "id": "cbc:contactUs",
+            "inherited": false,
+            "localName": "cbc:contactUs",
+            "openChoice": false,
+            "orderable": true,
+            "propertyType": "string",
+            "queryName": "cbc:contactUs",
+            "queryable": true,
+            "required": false,
+            "updatability": "readwrite"
+        },
+        "cbc:help": {
+            "cardinality": "single",
+            "description": "You will get documentation here",
+            "displayName": "Secondary Integer Property",
+            "id": "cbc:help",
+            "inherited": false,
+            "localName": "cbc:help",
+            "openChoice": false,
+            "orderable": true,
+            "propertyType": "string",
+            "queryName": "cbc:help",
+            "queryable": true,
+            "required": true,
+            "updatability": "readwrite"
+        }
+    },
+    "queryName": "cbc:secondaryType",
+    "queryable": true,
+    "typeMutability": {
+        "create": true,
+        "delete": true,
+        "update": true
+    }
+}

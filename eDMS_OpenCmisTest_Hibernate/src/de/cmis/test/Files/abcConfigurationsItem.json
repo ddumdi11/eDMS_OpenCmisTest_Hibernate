@@ -1,0 +1,54 @@
+{
+    "baseId": "cmis:item",
+    "controllableACL": true,
+    "controllablePolicy": true,
+    "creatable": true,
+    "description": "Builtin InMemory type definition abc:configurationsItem",
+    "displayName": "abc:configurationsItem",
+    "fileable": true,
+    "fulltextIndexed": false,
+    "id": "abc:configurationsItem",
+    "includedInSupertypeQuery": true,
+    "localName": "abc:configurationsItem",
+    "localNamespace": "http://apache.org",
+    "parentId": "cmis:item",
+    "propertyDefinitions": {
+        "abc:contactUs": {
+            "cardinality": "single",
+            "description": "Contact url.",
+            "displayName": "contact us",
+            "id": "abc:contactUs",
+            "inherited": false,
+            "localName": "abc:contactUs",
+            "openChoice": false,
+            "orderable": true,
+            "propertyType": "string",
+            "queryName": "abc:contactUs",
+            "queryable": true,
+            "required": false,
+            "updatability": "readwrite"
+        },
+        "abc:help": {
+            "cardinality": "single",
+            "description": "Documentation url.",
+            "displayName": "Help",
+            "id": "abc:help",
+            "inherited": false,
+            "localName": "abc:help",
+            "openChoice": false,
+            "orderable": true,
+            "propertyType": "string",
+            "queryName": "abc:help",
+            "queryable": true,
+            "required": false,
+            "updatability": "readwrite"
+        }
+    },
+    "queryName": "abc:configurationsItem",
+    "queryable": true,
+    "typeMutability": {
+        "create": true,
+        "delete": true,
+        "update": true
+    }
+}

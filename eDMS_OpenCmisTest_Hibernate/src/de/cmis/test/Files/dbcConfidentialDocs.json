@@ -1,0 +1,39 @@
+{
+    "baseId": "cmis:secondary",
+    "controllableACL": false,
+    "controllablePolicy": false,
+    "creatable": false,
+    "description": "Builtin InMemory type definition dbc:confidentialDocs",
+    "displayName": "dbc:confidentialDocs",
+    "fileable": false,
+    "fulltextIndexed": false,
+    "id": "dbc:confidentialDocs",
+    "includedInSupertypeQuery": true,
+    "localName": "dbc:confidentialDocs",
+    "localNamespace": "http://apache.org",
+    "parentId": "cmis:secondary",
+    "propertyDefinitions": {
+        "dbc:confidentialLevel": {
+            "cardinality": "single",
+            "description": "Contact us for any queries",
+            "displayName": "Confidentiality of the document",
+            "id": "dbc:confidentialLevel",
+            "inherited": false,
+            "localName": "dbc:confidentialLevel",
+            "openChoice": false,
+            "orderable": true,
+            "propertyType": "integer",
+            "queryName": "dbc:confidentialLevel",
+            "queryable": true,
+            "required": false,
+            "updatability": "readwrite"
+        }
+    },
+    "queryName": "dbc:confidentialDocs",
+    "queryable": true,
+    "typeMutability": {
+        "create": true,
+        "delete": true,
+        "update": true
+    }
+}
